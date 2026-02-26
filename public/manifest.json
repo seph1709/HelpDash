@@ -1,0 +1,27 @@
+{
+  "name": "HelpDash",
+  "short_name": "BrgyTasks",
+  "description": "Find trusted local services within 2km in Quezon City",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["utilities", "lifestyle"],
+  "lang": "en",
+  "screenshots": []
+}

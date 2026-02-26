@@ -1,0 +1,70 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  # ──────────────────────────────────────────
+  # Deploy to Vercel (Production)
+  # ──────────────────────────────────────────
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build for production
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
+        id: deploy
+        run: |
+          URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Comment deploy URL on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 Deployed to production: ${{ steps.deploy.outputs.url }}'
+            })
+
+# ──────────────────────────────────────────
+# Required GitHub Secrets:
+#   VERCEL_TOKEN         — from vercel.com/account/tokens
+#   VERCEL_ORG_ID        — from .vercel/project.json after `vercel link`
+#   VERCEL_PROJECT_ID    — from .vercel/project.json after `vercel link`
+#
+# Required Vercel Environment Variables (set in vercel.com dashboard):
+#   NEXT_PUBLIC_SUPABASE_URL
+#   NEXT_PUBLIC_SUPABASE_ANON_KEY
+#   SUPABASE_SERVICE_ROLE_KEY
+#   GOOGLE_VISION_API_KEY      (optional)
+#   NEXT_PUBLIC_GOOGLE_MAPS_KEY (optional, Week 2)
+#   PAYMONGO_SECRET_KEY        (Week 2)
+#   PAYMONGO_PUBLIC_KEY        (Week 2)
+# ──────────────────────────────────────────
