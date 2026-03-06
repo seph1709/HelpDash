@@ -5,12 +5,7 @@ export default defineConfig({
   out: './drizzle',
   dialect: 'postgresql',
   dbCredentials: {
-    host: 'aws-0-ap-southeast-1.pooler.supabase.com',
-    port: 6543,
-    database: 'postgres',
-    user: 'postgres.auzqognhrmyyczignkwz',
-    password: 'u.62S*w!T*tVMJ8',
-    ssl: true,
+    url: process.env.DATABASE_URL_UNPOOLED!,
   },
   verbose: true,
   strict: false,
