@@ -28,12 +28,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. Database credentials are no longer embedded in source code; `scripts/run-schema.mjs` reads from environment variables
   2. The `/api/migrate-now` endpoint returns 403 or does not exist for unauthenticated callers
   3. The notification API rejects requests where the sender is not a confirmed participant of the referenced booking
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Move hardcoded DB credentials to environment variables (SEC-01)
-- [ ] 01-02: Protect or remove the unauthenticated `/api/migrate-now` endpoint (SEC-02)
-- [ ] 01-03: Restrict notification API to verified booking participants (SEC-03)
+- [ ] 01-01-PLAN.md — Move hardcoded DB credentials to env vars; sync supabase/schema.sql (SEC-01)
+- [ ] 01-02-PLAN.md — Delete unauthenticated /api/migrate-now route and clean PUBLIC_PATHS (SEC-02)
+- [ ] 01-03-PLAN.md — Add booking-participant guard to /api/notifications route (SEC-03)
 
 ### Phase 2: Trust & Safety
 **Goal**: Booking integrity is enforced on the server and both parties have recourse when things go wrong
