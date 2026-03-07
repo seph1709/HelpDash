@@ -12,7 +12,7 @@ HelpDash has a working core — booking, chat, tracking, and provider onboarding
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Security** - Seal known vulnerabilities before any new features ship
+- [x] **Phase 1: Security** - Seal known vulnerabilities before any new features ship (completed 2026-03-06)
 - [ ] **Phase 2: Trust & Safety** - Server-side booking validation, ID review flow, and dispute interface
 - [ ] **Phase 3: Admin** - Protected admin dashboard for ID verification and provider management
 - [ ] **Phase 4: Feed & Automation** - Job expiry, auto-confirm, category filter, and distance preference
@@ -104,7 +104,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Security | 0/3 | Not started | - |
+| 1. Security | 3/3 | Complete   | 2026-03-06 |
 | 2. Trust & Safety | 0/3 | Not started | - |
 | 3. Admin | 0/3 | Not started | - |
 | 4. Feed & Automation | 0/4 | Not started | - |
