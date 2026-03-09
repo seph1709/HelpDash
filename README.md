@@ -207,7 +207,7 @@ pending -> accepted -> en_route -> arrived -> in_progress -> done
 | Profile visibility | Standard | Boosted           |
 | Subscription       | Free     | Paid (GCash/Cash) |
 
----
+<!-- ---
 
 ## Deployment
 
@@ -218,4 +218,4 @@ The recommended deployment target is [Vercel](https://vercel.com) — it integra
 3. Set all environment variables from `.env.local`
 4. Deploy
 
-For the database, Supabase handles all PostgreSQL hosting and connection pooling.
+For the database, Supabase handles all PostgreSQL hosting and connection pooling. -->
