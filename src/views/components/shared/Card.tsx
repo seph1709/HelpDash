@@ -11,9 +11,9 @@ export function Card({ padding = 'md', hover, className, children, ...props }: C
   return (
     <div
       className={cn(
-        'bg-white rounded-2xl border border-slate-100 shadow-sm',
+        'bg-white rounded-lg border border-[#f0f0f0] shadow-[0_2px_8px_rgba(0,0,0,0.06)]',
         paddings[padding],
-        hover && 'cursor-pointer transition-shadow hover:shadow-md hover:-translate-y-px',
+        hover && 'cursor-pointer transition-shadow hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] hover:-translate-y-px',
         className
       )}
       {...props}
@@ -25,7 +25,7 @@ export function Card({ padding = 'md', hover, className, children, ...props }: C
 
 export function CardSection({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('border-t border-slate-100 pt-4 mt-4', className)} {...props}>
+    <div className={cn('border-t border-[#f0f0f0] pt-4 mt-4', className)} {...props}>
       {children}
     </div>
   )

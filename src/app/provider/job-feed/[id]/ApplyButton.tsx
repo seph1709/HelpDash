@@ -22,7 +22,7 @@ export function ApplyButton({ jobId, clientId, providerId, existingBooking, jobT
 
   if (applied) {
     return (
-      <div className="flex items-center justify-center gap-2 p-4 bg-emerald-50 rounded-2xl border border-emerald-200">
+      <div className="flex items-center justify-center gap-2 p-4 bg-[#f6ffed] rounded-lg border border-[#b7eb8f]">
         <CheckCircle className="w-5 h-5 text-emerald-600" />
         <span className="font-medium text-emerald-700">Application sent — waiting for client</span>
       </div>

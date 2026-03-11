@@ -49,7 +49,7 @@ export function BookingBadgeRow({ bookingId, href, status, children }: Props) {
   return (
     <Link href={href} onClick={handleClick} className="relative block">
       {hasNew && (
-        <span className="absolute top-2 right-2 z-10 w-2.5 h-2.5 rounded-full bg-indigo-500 ring-2 ring-white" />
+        <span className="absolute top-2 right-2 z-10 w-2.5 h-2.5 rounded-full bg-[#1677ff] ring-2 ring-white" />
       )}
       {children}
     </Link>

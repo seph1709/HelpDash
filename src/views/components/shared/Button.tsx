@@ -12,20 +12,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', loading, fullWidth, className, children, disabled, ...props }, ref) => {
-    const base = 'inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]'
+    const base = 'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1677ff] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
 
     const variants = {
-      primary: 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm',
-      secondary: 'bg-cyan-500 text-white hover:bg-cyan-600 shadow-sm',
-      outline: 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50',
-      ghost: 'text-slate-600 hover:bg-slate-100',
-      danger: 'bg-red-500 text-white hover:bg-red-600 shadow-sm',
+      primary: 'bg-[#1677ff] text-white hover:bg-[#4096ff] shadow-sm',
+      secondary: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+      outline: 'border border-[#d9d9d9] bg-white text-gray-700 hover:border-[#1677ff] hover:text-[#1677ff]',
+      ghost: 'text-gray-600 hover:bg-gray-50',
+      danger: 'bg-[#ff4d4f] text-white hover:bg-[#ff7875] shadow-sm',
     }
 
     const sizes = {
-      sm: 'px-3 py-1.5 text-sm min-h-[36px]',
-      md: 'px-4 py-2.5 text-sm min-h-[44px]',
-      lg: 'px-6 py-3 text-base min-h-[52px]',
+      sm: 'px-3 py-1.5 text-sm min-h-[32px]',
+      md: 'px-4 py-2 text-sm min-h-[40px]',
+      lg: 'px-6 py-2.5 text-base min-h-[48px]',
     }
 
     return (

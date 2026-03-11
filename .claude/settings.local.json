@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(test !:*)",
+      "Bash(npx drizzle-kit:*)",
+      "Bash(DATABASE_URL_UNPOOLED=\"postgresql://postgres:5u1QD2zKwPhhK9t1@db.auzqognhrmyyczignkwz.supabase.co:5432/postgres\" npx drizzle-kit:*)",
+      "Bash(npx supabase:*)",
+      "WebFetch(domain:www.bossjob.ph)"
+    ]
+  }
+}

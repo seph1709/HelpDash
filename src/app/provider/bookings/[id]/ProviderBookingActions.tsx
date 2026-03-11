@@ -40,11 +40,16 @@ export function ProviderBookingActions({ bookingId, status, clientId, jobTitle }
         .update(updates)
         .eq('id', bookingId)
       if (error) throw new Error(error.message)
+      // Broadcast so the client's booking page refreshes in real-time
+      await supabase.channel(`booking-status:${bookingId}`).send({
+        type: 'broadcast',
+        event: 'status_changed',
+        payload: {},
+      })
       const nextValue = (updates as { status?: string }).status
       if (nextValue && NOTIFY_CLIENT[nextValue]) {
         try {
-          const supabase2 = createSupabaseBrowserClient()
-          await notifyUser(supabase2, clientId, nextValue, `Your provider ${NOTIFY_CLIENT[nextValue]} for "${jobTitle}"`, bookingId)
+          await notifyUser(supabase, clientId, nextValue, `Your provider ${NOTIFY_CLIENT[nextValue]} for "${jobTitle}"`, bookingId)
         } catch {
           // silent
         }

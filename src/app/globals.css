@@ -2,14 +2,16 @@
 @import "leaflet/dist/leaflet.css";
 
 :root {
-  --primary: #4f46e5;
-  --primary-dark: #4338ca;
-  --accent: #06b6d4;
-  --background: #f8fafc;
+  --primary: #1677ff;
+  --primary-dark: #0958d9;
+  --primary-hover: #4096ff;
+  --accent: #1677ff;
+  --background: #ffffff;
   --surface: #ffffff;
-  --text: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
+  --text: rgba(0, 0, 0, 0.88);
+  --muted: rgba(0, 0, 0, 0.45);
+  --border: #f0f0f0;
+  --border-secondary: #d9d9d9;
 }
 
 @theme inline {
@@ -53,13 +55,13 @@ input[type="number"] {
   0%,
   100% {
     box-shadow:
-      0 0 4px 1px rgba(99, 102, 241, 0.5),
-      0 0 8px 2px rgba(99, 102, 241, 0.25);
+      0 0 4px 1px rgba(22, 119, 255, 0.5),
+      0 0 8px 2px rgba(22, 119, 255, 0.25);
   }
   50% {
     box-shadow:
-      0 0 8px 3px rgba(99, 102, 241, 0.8),
-      0 0 16px 6px rgba(99, 102, 241, 0.35);
+      0 0 8px 3px rgba(22, 119, 255, 0.8),
+      0 0 16px 6px rgba(22, 119, 255, 0.35);
   }
 }
 /* Leaflet map container */

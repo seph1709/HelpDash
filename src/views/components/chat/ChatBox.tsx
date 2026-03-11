@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createSupabaseBrowserClient } from '@/lib/supabase'
 import { formatRelativeTime } from '@/lib/utils'
-import { Send } from 'lucide-react'
+import { Send, MessageCircle } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface ChatMessage {
@@ -17,9 +17,10 @@ interface Props {
   bookingId: string
   currentUserId: string
   currentUserName: string
+  readonly?: boolean
 }
 
-export function ChatBox({ bookingId, currentUserId, currentUserName }: Props) {
+export function ChatBox({ bookingId, currentUserId, currentUserName, readonly = false }: Props) {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
@@ -135,19 +136,21 @@ export function ChatBox({ bookingId, currentUserId, currentUserName }: Props) {
   }
 
   return (
-    <div className="flex flex-col rounded-2xl border border-slate-100 bg-white overflow-hidden">
-      <div className="px-4 py-3 border-b border-slate-100">
-        <p className="text-sm font-semibold text-slate-800">💬 Chat</p>
-        <p className="text-xs text-slate-400">Coordinate with the other party</p>
+    <div className="flex flex-col rounded-lg border border-[#f0f0f0] bg-white overflow-hidden">
+      <div className="px-4 py-3 border-b border-[#f0f0f0]">
+        <p className="flex items-center gap-1.5 text-sm font-semibold text-gray-800"><MessageCircle className="w-4 h-4" /> Chat</p>
+        <p className="text-xs text-gray-400">
+          {readonly ? 'Job completed — chat is now read-only' : 'Coordinate with the other party'}
+        </p>
       </div>
 
       {/* Messages */}
       <div className="flex flex-col gap-2 p-4 h-64 overflow-y-auto">
         {loading ? (
-          <p className="text-xs text-slate-400 text-center py-4">Loading messages...</p>
+          <p className="text-xs text-gray-400 text-center py-4">Loading messages...</p>
         ) : messages.length === 0 ? (
-          <p className="text-xs text-slate-400 text-center py-4">
-            No messages yet. Say hello! 👋
+          <p className="text-xs text-gray-400 text-center py-4">
+            No messages yet. Start the conversation.
           </p>
         ) : (
           messages.map((msg) => {
@@ -155,18 +158,18 @@ export function ChatBox({ bookingId, currentUserId, currentUserName }: Props) {
             return (
               <div key={msg.id} className={`flex flex-col ${isMe ? 'items-end' : 'items-start'}`}>
                 {!isMe && (
-                  <p className="text-[10px] text-slate-400 mb-0.5 px-1">{msg.sender_name}</p>
+                  <p className="text-[10px] text-gray-400 mb-0.5 px-1">{msg.sender_name}</p>
                 )}
                 <div
-                  className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm ${
+                  className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
                     isMe
-                      ? 'bg-indigo-600 text-white rounded-br-sm'
-                      : 'bg-slate-100 text-slate-800 rounded-bl-sm'
+                      ? 'bg-[#1677ff] text-white rounded-br-sm'
+                      : 'bg-gray-100 text-gray-800 rounded-bl-sm'
                   }`}
                 >
                   {msg.message}
                 </div>
-                <p className="text-[10px] text-slate-400 mt-0.5 px-1">
+                <p className="text-[10px] text-gray-400 mt-0.5 px-1">
                   {formatRelativeTime(msg.created_at)}
                 </p>
               </div>
@@ -176,26 +179,28 @@ export function ChatBox({ bookingId, currentUserId, currentUserName }: Props) {
         <div ref={bottomRef} />
       </div>
 
-      {/* Input */}
-      <div className="flex items-end gap-2 p-3 border-t border-slate-100">
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Type a message..."
-          rows={1}
-          className="flex-1 px-3 py-2 text-sm rounded-xl border border-slate-200 bg-slate-50 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white"
-          style={{ maxHeight: 80, overflowY: 'auto' }}
-        />
-        <button
-          onClick={sendMessage}
-          disabled={!input.trim() || sending}
-          className="p-2.5 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
-          aria-label="Send message"
-        >
-          <Send className="w-4 h-4" />
-        </button>
-      </div>
+      {/* Input — hidden when readonly */}
+      {!readonly && (
+        <div className="flex items-end gap-2 p-3 border-t border-[#f0f0f0]">
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Type a message..."
+            rows={1}
+            className="flex-1 px-3 py-2 text-sm rounded-lg border border-[#d9d9d9] bg-gray-50 resize-none focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] focus:bg-white transition-colors"
+            style={{ maxHeight: 80, overflowY: 'auto' }}
+          />
+          <button
+            onClick={sendMessage}
+            disabled={!input.trim() || sending}
+            className="p-2.5 rounded-lg bg-[#1677ff] text-white hover:bg-[#4096ff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+            aria-label="Send message"
+          >
+            <Send className="w-4 h-4" />
+          </button>
+        </div>
+      )}
     </div>
   )
 }

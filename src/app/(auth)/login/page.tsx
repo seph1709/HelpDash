@@ -47,8 +47,8 @@ function LoginForm() {
 
   return (
     <Card>
-      <h1 className="text-xl font-semibold text-slate-900 mb-1">Welcome back</h1>
-      <p className="text-sm text-slate-500 mb-6">Sign in to your account</p>
+      <h1 className="text-xl font-semibold text-gray-900 mb-1">Welcome back</h1>
+      <p className="text-sm text-gray-400 mb-6">Sign in to your account</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <Input
@@ -76,7 +76,7 @@ function LoginForm() {
 
       <p className="text-center text-sm text-slate-500 mt-4">
         No account yet?{' '}
-        <Link href="/register" className="text-indigo-600 font-medium hover:underline">
+        <Link href="/register" className="text-[#1677ff] font-medium hover:underline">
           Register here
         </Link>
       </p>
@@ -86,7 +86,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="h-64 rounded-2xl bg-slate-50 animate-pulse" />}>
+    <Suspense fallback={<div className="h-64 rounded-lg bg-gray-50 animate-pulse" />}>
       <LoginForm />
     </Suspense>
   )

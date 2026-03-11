@@ -59,16 +59,16 @@ export function LocationSharer({ bookingId, providerId }: Props) {
   }, [bookingId, providerId])
 
   return (
-    <div className={`flex items-center gap-2 px-4 py-3 rounded-2xl text-sm font-medium ${
+    <div className={`flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium ${
       status === 'sharing'
-        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+        ? 'bg-[#f6ffed] text-[#52c41a] border border-[#b7eb8f]'
         : status === 'error'
-          ? 'bg-red-50 text-red-600 border border-red-200'
-          : 'bg-slate-50 text-slate-500 border border-slate-200'
+          ? 'bg-[#fff2f0] text-[#ff4d4f] border border-[#ffccc7]'
+          : 'bg-gray-50 text-gray-400 border border-[#f0f0f0]'
     }`}>
       <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
-        status === 'sharing' ? 'bg-emerald-500 animate-pulse' :
-        status === 'error'   ? 'bg-red-400' : 'bg-slate-300 animate-pulse'
+        status === 'sharing' ? 'bg-[#52c41a] animate-pulse' :
+        status === 'error'   ? 'bg-[#ff4d4f]' : 'bg-gray-300 animate-pulse'
       }`} />
       {status === 'sharing' && 'Sharing live location with client'}
       {status === 'error'   && 'Location access denied — enable GPS'}

@@ -7,6 +7,7 @@ import { Badge } from '@/views/components/shared/Badge'
 import { JOB_CATEGORIES } from '@/types'
 import { formatRelativeTime, formatCurrency, getDistanceKm, formatDistance } from '@/lib/utils'
 import { MapPin, Clock, Zap, ChevronLeft, User } from 'lucide-react'
+import { CategoryIcon } from '@/lib/category-icons'
 import { ApplyButton } from './ApplyButton'
 
 export default async function JobDetailPage({
@@ -53,21 +54,21 @@ export default async function JobDetailPage({
     <div className="flex flex-col gap-4 pb-32">
       {/* Back header */}
       <div className="flex items-center gap-2 pt-2">
-        <Link href="/provider/job-feed" className="p-2 rounded-xl hover:bg-slate-100 -ml-2">
-          <ChevronLeft className="w-5 h-5 text-slate-600" />
+        <Link href="/provider/job-feed" className="p-2 rounded-lg hover:bg-gray-50 -ml-2">
+          <ChevronLeft className="w-5 h-5 text-gray-600" />
         </Link>
-        <h1 className="font-bold text-slate-900">Job Details</h1>
+        <h1 className="font-semibold text-gray-900">Job Details</h1>
       </div>
 
       {/* Title card */}
       <Card>
         <div className="flex items-start gap-3">
-          <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl flex-shrink-0 border border-slate-100">
-            {meta?.icon}
+          <div className="w-12 h-12 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
+            <CategoryIcon category={job.category} className="w-5 h-5 text-[#1677ff]" />
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="font-bold text-slate-900 text-lg leading-tight">{job.title}</h2>
-            <p className="text-sm text-slate-500 mt-0.5">{job.address_text}</p>
+            <h2 className="font-semibold text-gray-900 text-lg leading-tight">{job.title}</h2>
+            <p className="text-sm text-gray-400 mt-0.5">{job.address_text}</p>
             <div className="flex flex-wrap items-center gap-2 mt-2">
               <Badge variant="default">{meta?.label}</Badge>
               {job.urgency === 'asap' ? (
@@ -75,11 +76,11 @@ export default async function JobDetailPage({
                   <Zap className="w-3 h-3" /> ASAP
                 </span>
               ) : (
-                <span className="flex items-center gap-1 text-xs text-slate-500">
+                <span className="flex items-center gap-1 text-xs text-gray-400">
                   <Clock className="w-3 h-3" /> Scheduled
                 </span>
               )}
-              <span className="text-xs text-slate-400">{formatRelativeTime(job.created_at)}</span>
+              <span className="text-xs text-gray-400">{formatRelativeTime(job.created_at)}</span>
             </div>
           </div>
         </div>
@@ -88,18 +89,18 @@ export default async function JobDetailPage({
       {/* Description */}
       {job.description && (
         <Card>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1.5">
             Details
           </p>
-          <p className="text-sm text-slate-700 whitespace-pre-wrap">{job.description}</p>
+          <p className="text-sm text-gray-700 whitespace-pre-wrap">{job.description}</p>
         </Card>
       )}
 
       {/* Budget + Distance */}
       <div className="grid grid-cols-2 gap-3">
         <Card padding="sm">
-          <p className="text-xs text-slate-500 mb-0.5">Budget</p>
-          <p className="font-semibold text-slate-900 text-sm">
+          <p className="text-xs text-gray-400 mb-0.5">Budget</p>
+          <p className="font-semibold text-gray-900 text-sm">
             {job.budget_min || job.budget_max
               ? job.budget_min && job.budget_max
                 ? `${formatCurrency(job.budget_min)} – ${formatCurrency(job.budget_max)}`
@@ -110,9 +111,9 @@ export default async function JobDetailPage({
           </p>
         </Card>
         <Card padding="sm">
-          <p className="text-xs text-slate-500 mb-0.5">Distance</p>
-          <p className="font-semibold text-slate-900 text-sm flex items-center gap-1">
-            <MapPin className="w-3.5 h-3.5 text-slate-400" />
+          <p className="text-xs text-gray-400 mb-0.5">Distance</p>
+          <p className="font-semibold text-gray-900 text-sm flex items-center gap-1">
+            <MapPin className="w-3.5 h-3.5 text-gray-400" />
             {dist != null ? formatDistance(dist) : '—'}
           </p>
         </Card>
@@ -121,8 +122,8 @@ export default async function JobDetailPage({
       {/* Scheduled time */}
       {job.urgency === 'scheduled' && job.scheduled_at && (
         <Card padding="sm">
-          <p className="text-xs text-slate-500 mb-0.5">Scheduled for</p>
-          <p className="font-semibold text-slate-900 text-sm">
+          <p className="text-xs text-gray-400 mb-0.5">Scheduled for</p>
+          <p className="font-semibold text-gray-900 text-sm">
             {new Date(job.scheduled_at).toLocaleString('en-PH', {
               weekday: 'short',
               month: 'short',
@@ -137,11 +138,11 @@ export default async function JobDetailPage({
       {/* Client */}
       {job.client && (
         <Card>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
             Posted by
           </p>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
               {job.client.avatar_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -150,13 +151,13 @@ export default async function JobDetailPage({
                   alt={job.client.name ?? 'Client'}
                 />
               ) : (
-                <User className="w-5 h-5 text-slate-400" />
+                <User className="w-5 h-5 text-gray-400" />
               )}
             </div>
             <div>
-              <p className="font-medium text-slate-900 text-sm">{job.client.name ?? 'Client'}</p>
+              <p className="font-medium text-gray-900 text-sm">{job.client.name ?? 'Client'}</p>
               {job.client.barangay && (
-                <p className="text-xs text-slate-500">{job.client.barangay}</p>
+                <p className="text-xs text-gray-400">{job.client.barangay}</p>
               )}
             </div>
           </div>
