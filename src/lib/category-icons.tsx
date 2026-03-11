@@ -1,3 +1,4 @@
+import { createElement } from 'react'
 import {
   Wrench,
   Zap,
@@ -39,5 +40,5 @@ export function CategoryIcon({
   className?: string
 }) {
   const Icon = (category && MAP[category]) ?? MoreHorizontal
-  return <Icon className={className ?? 'w-4 h-4'} />
+  return createElement(Icon, { className: className ?? 'w-4 h-4' })
 }
