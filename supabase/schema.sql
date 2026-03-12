@@ -145,6 +145,7 @@ CREATE TABLE IF NOT EXISTS notifications (
   type text NOT NULL,
   message text NOT NULL,
   is_read bool DEFAULT false,
+  booking_id uuid REFERENCES bookings(id) ON DELETE SET NULL,
   created_at timestamptz DEFAULT now()
 );
 
@@ -226,6 +227,7 @@ CREATE POLICY "Authenticated users can rate" ON ratings FOR INSERT WITH CHECK (a
 -- Notifications: own only
 CREATE POLICY "Users see own notifications" ON notifications FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users update own notifications" ON notifications FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Users delete own notifications" ON notifications FOR DELETE USING (auth.uid() = user_id);
 
 -- Disputes: participants only
 CREATE POLICY "Dispute participants can read" ON disputes FOR SELECT USING (auth.uid() = raised_by_id);
@@ -233,6 +235,31 @@ CREATE POLICY "Authenticated users can raise disputes" ON disputes FOR INSERT WI
 
 -- Subscriptions: own only
 CREATE POLICY "Providers manage own subscriptions" ON subscriptions FOR ALL USING (auth.uid() = provider_id);
+
+-- ============================================================
+-- CHAT MESSAGES
+-- ============================================================
+CREATE TABLE IF NOT EXISTS chat_messages (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  booking_id uuid REFERENCES bookings(id) ON DELETE CASCADE NOT NULL,
+  sender_id uuid REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+  message text NOT NULL,
+  created_at timestamptz DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_chat_messages_booking_id ON chat_messages(booking_id);
+CREATE INDEX IF NOT EXISTS idx_chat_messages_created_at ON chat_messages(created_at);
+
+ALTER TABLE chat_messages ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Chat participants can read" ON chat_messages FOR SELECT USING (
+  booking_id IN (SELECT id FROM bookings WHERE client_id = auth.uid() OR provider_id = auth.uid())
+);
+
+CREATE POLICY "Chat participants can send" ON chat_messages FOR INSERT WITH CHECK (
+  auth.uid() = sender_id AND
+  booking_id IN (SELECT id FROM bookings WHERE client_id = auth.uid() OR provider_id = auth.uid())
+);
 
 -- ============================================================
 -- TRIGGER: auto-update provider rating_avg on new rating

@@ -68,8 +68,8 @@ export function LocationPicker({
       // Add 2km radius circle
       if (showRadius) {
         L.circle([initialLat, initialLng], {
-          color: '#4F46E5',
-          fillColor: '#4F46E5',
+          color: '#1677ff',
+          fillColor: '#1677ff',
           fillOpacity: 0.05,
           radius: 2000,
           weight: 1.5,
@@ -121,8 +121,8 @@ export function LocationPicker({
 
   if (!isClient) {
     return (
-      <div style={{ height }} className="rounded-xl bg-slate-100 flex items-center justify-center">
-        <MapPin className="w-6 h-6 text-slate-400 animate-pulse" />
+      <div style={{ height }} className="rounded-lg bg-gray-100 flex items-center justify-center">
+        <MapPin className="w-6 h-6 text-gray-400 animate-pulse" />
       </div>
     )
   }
@@ -130,7 +130,7 @@ export function LocationPicker({
   return (
     <div className="flex flex-col gap-2">
       <div className="relative" style={{ height }}>
-        <div ref={mapRef} className="w-full h-full rounded-xl overflow-hidden border border-slate-200" />
+        <div ref={mapRef} className="w-full h-full rounded-lg overflow-hidden border border-[#f0f0f0]" />
         <Button
           type="button"
           size="sm"
@@ -144,8 +144,8 @@ export function LocationPicker({
         </Button>
       </div>
       {address && (
-        <div className="flex items-start gap-2 text-sm text-slate-600 bg-slate-50 rounded-lg px-3 py-2">
-          <MapPin className="w-4 h-4 mt-0.5 text-indigo-500 flex-shrink-0" />
+        <div className="flex items-start gap-2 text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-2">
+          <MapPin className="w-4 h-4 mt-0.5 text-[#1677ff] flex-shrink-0" />
           <span>{address}</span>
         </div>
       )}

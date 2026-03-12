@@ -12,6 +12,7 @@ import { Input, Select } from "@/views/components/shared/Input";
 import { Card } from "@/views/components/shared/Card";
 import { LocationPicker } from "@/views/components/map/LocationPicker";
 import { BARANGAYS_QC } from "@/types";
+import { Home, Wrench, Zap } from "lucide-react";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -58,11 +59,8 @@ export default function RegisterPage() {
   };
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
-
     setLoading(true);
     try {
-      // Call API route which uses the service-role client (bypasses RLS)
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -70,12 +68,12 @@ export default function RegisterPage() {
           ...data,
           lat: location?.lat,
           lng: location?.lng,
+          barangay: location?.address,
         }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? "Registration failed");
 
-      // Sign the user in client-side after the account is created
       const supabase = createSupabaseBrowserClient();
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email: data.email,
@@ -108,22 +106,20 @@ export default function RegisterPage() {
           <div key={s} className="flex items-center gap-2 flex-1">
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                i < stepIndex
-                  ? "bg-indigo-600 text-white"
-                  : i === stepIndex
-                    ? "bg-indigo-600 text-white"
-                    : "bg-slate-100 text-slate-400"
+                i <= stepIndex
+                  ? "bg-[#1677ff] text-white"
+                  : "bg-gray-100 text-gray-400"
               }`}
             >
               {i < stepIndex ? "✓" : i + 1}
             </div>
             <span
-              className={`text-xs font-medium ${i === stepIndex ? "text-indigo-600" : "text-slate-400"}`}
+              className={`text-xs font-medium ${i === stepIndex ? "text-[#1677ff]" : "text-gray-400"}`}
             >
               {s}
             </span>
             {i < STEPS.length - 1 && (
-              <div className="flex-1 h-px bg-slate-100" />
+              <div className="flex-1 h-px bg-[#f0f0f0]" />
             )}
           </div>
         ))}
@@ -133,7 +129,7 @@ export default function RegisterPage() {
         {/* Step 1: Account */}
         {step === "Account" && (
           <>
-            <h2 className="font-semibold text-slate-900">
+            <h2 className="font-semibold text-gray-900">
               Create your account
             </h2>
             <Input
@@ -168,7 +164,7 @@ export default function RegisterPage() {
         {/* Step 2: Role */}
         {step === "Role" && (
           <>
-            <h2 className="font-semibold text-slate-900">
+            <h2 className="font-semibold text-gray-900">
               How will you use HelpDash?
             </h2>
             <div className="grid grid-cols-1 gap-3">
@@ -177,27 +173,27 @@ export default function RegisterPage() {
                   value: "client",
                   label: "I need services",
                   desc: "Post jobs and hire local providers",
-                  icon: "🏠",
+                  Icon: Home,
                 },
                 {
                   value: "provider",
                   label: "I offer services",
                   desc: "Find clients and earn from gigs",
-                  icon: "🔧",
+                  Icon: Wrench,
                 },
                 {
                   value: "both",
                   label: "Both",
                   desc: "Post jobs and offer services",
-                  icon: "⚡",
+                  Icon: Zap,
                 },
               ].map((option) => (
                 <label
                   key={option.value}
-                  className={`flex items-center gap-3 p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
+                  className={`flex items-center gap-3 p-3.5 rounded-lg border-2 cursor-pointer transition-all ${
                     role === option.value
-                      ? "border-indigo-500 bg-indigo-50"
-                      : "border-slate-100 hover:border-slate-200"
+                      ? "border-[#1677ff] bg-[#e6f4ff]"
+                      : "border-[#f0f0f0] hover:border-[#91caff]"
                   }`}
                 >
                   <input
@@ -206,26 +202,18 @@ export default function RegisterPage() {
                     className="sr-only"
                     {...register("role")}
                   />
-                  <span className="text-2xl">{option.icon}</span>
+                  <span className="w-10 h-10 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
+                    <option.Icon className="w-5 h-5 text-[#1677ff]" />
+                  </span>
                   <div>
-                    <p className="font-medium text-slate-900 text-sm">
+                    <p className="font-medium text-gray-900 text-sm">
                       {option.label}
                     </p>
-                    <p className="text-xs text-slate-500">{option.desc}</p>
+                    <p className="text-xs text-gray-400">{option.desc}</p>
                   </div>
                 </label>
               ))}
             </div>
-            {/* <Select
-              label="Your barangay"
-              required
-              error={errors.barangay?.message}
-              options={[
-                { value: "", label: "Select barangay..." },
-                ...BARANGAYS_QC.map((b) => ({ value: b, label: b })),
-              ]}
-              {...register("barangay")}
-            /> */}
             <div className="flex gap-2">
               <Button
                 type="button"
@@ -251,10 +239,10 @@ export default function RegisterPage() {
         {/* Step 3: Location */}
         {step === "Location" && (
           <>
-            <h2 className="font-semibold text-slate-900">
+            <h2 className="font-semibold text-gray-900">
               Pin your home location
             </h2>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-gray-400">
               Tap the map or drag the pin to set your location. This helps match
               you with nearby providers.
             </p>
@@ -286,7 +274,7 @@ export default function RegisterPage() {
               </Button>
             </div>
             {!location && (
-              <p className="text-xs text-amber-600 text-center">
+              <p className="text-xs text-[#faad14] text-center">
                 Please pin your location on the map first
               </p>
             )}
@@ -294,11 +282,11 @@ export default function RegisterPage() {
         )}
       </form>
 
-      <p className="text-center text-sm text-slate-500 mt-4">
+      <p className="text-center text-sm text-gray-400 mt-4">
         Already have an account?{" "}
         <Link
           href="/login"
-          className="text-indigo-600 font-medium hover:underline"
+          className="text-[#1677ff] font-medium hover:underline"
         >
           Sign in
         </Link>

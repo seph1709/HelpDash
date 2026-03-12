@@ -13,6 +13,7 @@ import {
   LogOut,
   ChevronDown,
   MapPin,
+  Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/views/components/shared/Avatar";
@@ -31,6 +32,7 @@ const clientNav = [
   { href: "/post-job", label: "Post Job", icon: PlusCircle, accent: true },
   { href: "/bookings", label: "Bookings", icon: Briefcase },
   { href: "/providers", label: "Providers", icon: MapPin },
+  { href: "/profile", label: "Profile", icon: User, mobileHidden: true },
 ];
 
 const providerNav = [
@@ -87,29 +89,29 @@ export function AppShell({
   };
 
   return (
-    <div className="flex flex-col min-h-dvh bg-slate-50">
+    <div className="flex flex-col min-h-dvh bg-white">
       {/* Top header */}
-      <header className="sticky top-0 z-40 bg-white border-b border-slate-100 shadow-sm">
+      <header className="sticky top-0 z-40 bg-white border-b border-[#f0f0f0]">
         <div className="max-w-screen-xl mx-auto px-4 lg:px-8 h-14 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-xl bg-indigo-600 flex items-center justify-center">
+            <div className="w-7 h-7 rounded-lg bg-[#1677ff] flex items-center justify-center">
               <span className="text-white text-xs font-bold">H</span>
             </div>
-            <span className="font-semibold text-slate-900 text-sm">
+            <span className="font-semibold text-gray-900 text-sm">
               HelpDash
             </span>
           </Link>
 
           {/* Role switcher for 'both' users */}
           {user.role === "both" && (
-            <div className="flex rounded-lg border border-slate-200 overflow-hidden text-xs font-medium">
+            <div className="flex rounded-lg border border-[#d9d9d9] overflow-hidden text-xs font-medium">
               <Link
                 href="/dashboard"
                 className={cn(
                   "px-3 py-1.5 transition-colors",
                   !pathname.startsWith("/provider")
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-600 hover:bg-slate-50",
+                    ? "bg-[#1677ff] text-white"
+                    : "text-gray-600 hover:bg-gray-50",
                 )}
               >
                 Client
@@ -119,8 +121,8 @@ export function AppShell({
                 className={cn(
                   "px-3 py-1.5 transition-colors",
                   pathname.startsWith("/provider")
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-600 hover:bg-slate-50",
+                    ? "bg-[#1677ff] text-white"
+                    : "text-gray-600 hover:bg-gray-50",
                 )}
               >
                 Provider
@@ -132,11 +134,11 @@ export function AppShell({
             {/* Notifications */}
             <Link
               href="/notifications"
-              className="relative p-2 rounded-lg hover:bg-slate-100 transition-colors"
+              className="relative p-2 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <Bell className="w-5 h-5 text-slate-600" />
+              <Bell className="w-5 h-5 text-gray-600" />
               {liveCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">
+                <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#ff4d4f] text-white text-[10px] font-bold flex items-center justify-center">
                   {liveCount > 9 ? "9+" : liveCount}
                 </span>
               )}
@@ -146,29 +148,38 @@ export function AppShell({
             <div className="relative">
               <button
                 onClick={() => setProfileOpen(!profileOpen)}
-                className="flex items-center gap-1.5 p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+                className="flex items-center gap-1.5 p-1.5 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <Avatar name={user.name} src={user.avatar_url} size="sm" />
-                <span className="hidden lg:block text-sm font-medium text-slate-700 max-w-[120px] truncate">
+                <span className="hidden lg:block text-sm font-medium text-gray-700 max-w-[120px] truncate">
                   {user.name}
                 </span>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
+                <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
               </button>
               {profileOpen && (
-                <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl border border-slate-100 shadow-lg py-1 z-50">
-                  <div className="px-3 py-2 border-b border-slate-50">
-                    <p className="text-sm font-medium text-slate-900 truncate">
+                <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-lg border border-[#f0f0f0] shadow-[0_6px_16px_rgba(0,0,0,0.08)] py-1 z-50">
+                  <div className="px-3 py-2 border-b border-[#f0f0f0]">
+                    <p className="text-sm font-medium text-gray-900 truncate">
                       {user.name}
                     </p>
-                    <p className="text-xs text-slate-500 truncate">
+                    <p className="text-xs text-gray-400 truncate">
                       {user.email}
                     </p>
                   </div>
+                  {isClient && (
+                    <Link
+                      href="/profile"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                    >
+                      <User className="w-4 h-4" /> My Profile
+                    </Link>
+                  )}
                   {isProvider && (
                     <Link
                       href="/provider/profile"
                       onClick={() => setProfileOpen(false)}
-                      className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                      className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
                     >
                       <User className="w-4 h-4" /> Provider Profile
                     </Link>
@@ -178,7 +189,7 @@ export function AppShell({
                       setProfileOpen(false);
                       handleLogout();
                     }}
-                    className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-[#ff4d4f] hover:bg-gray-50 w-full text-left"
                   >
                     <LogOut className="w-4 h-4" /> Sign out
                   </button>
@@ -192,7 +203,7 @@ export function AppShell({
       {/* Body: sidebar + content */}
       <div className="flex flex-1 max-w-screen-xl mx-auto w-full">
         {/* Sidebar — desktop only */}
-        <aside className="hidden lg:flex flex-col w-56 shrink-0 sticky top-14 self-start h-[calc(100dvh-3.5rem)] border-r border-slate-100 bg-white px-3 py-6 gap-1">
+        <aside className="hidden lg:flex flex-col w-56 shrink-0 sticky top-14 self-start h-[calc(100dvh-3.5rem)] border-r border-[#f0f0f0] bg-white px-3 py-5 gap-0.5">
           {nav.map((item) => {
             const active =
               pathname === item.href ||
@@ -202,16 +213,16 @@ export function AppShell({
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors",
+                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
                   active
-                    ? "bg-indigo-50 text-indigo-700"
-                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+                    ? "bg-[#e6f4ff] text-[#1677ff]"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                 )}
               >
                 <item.icon
                   className={cn(
-                    "w-4.5 h-4.5 shrink-0",
-                    active ? "text-indigo-600" : "text-slate-400",
+                    "w-4 h-4 shrink-0",
+                    active ? "text-[#1677ff]" : "text-gray-400",
                   )}
                   strokeWidth={active ? 2.5 : 2}
                 />
@@ -221,10 +232,10 @@ export function AppShell({
           })}
 
           {/* Sidebar footer */}
-          <div className="mt-auto pt-4 border-t border-slate-100">
+          <div className="mt-auto pt-4 border-t border-[#f0f0f0]">
             <button
               onClick={handleLogout}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 w-full transition-colors"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#ff4d4f] hover:bg-red-50 w-full transition-colors"
             >
               <LogOut className="w-4 h-4 shrink-0" />
               Sign out
@@ -239,9 +250,9 @@ export function AppShell({
       </div>
 
       {/* Bottom navigation — mobile only */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-100 safe-bottom">
-        <div className="flex items-center justify-around px-2 h-16">
-          {nav.map((item) => {
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#f0f0f0] safe-bottom">
+        <div className="flex items-center justify-around px-2 h-14">
+          {nav.filter((item) => !(item as any).mobileHidden).map((item) => {
             const active =
               pathname === item.href ||
               (item.href !== "/dashboard" && pathname.startsWith(item.href));
@@ -250,19 +261,14 @@ export function AppShell({
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium transition-colors",
-                  active
-                    ? "text-indigo-600"
-                    : "text-slate-500 hover:text-slate-700",
+                  "flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium transition-all",
+                  active ? "text-[#1677ff]" : "text-gray-400 hover:text-gray-600",
                   // @ts-expect-error accent property
-                  item.accent && !active && "text-indigo-500",
+                  item.accent && !active && "text-[#1677ff]",
                 )}
               >
                 <item.icon
-                  className={cn(
-                    "w-5 h-5",
-                    active && "fill-current opacity-20 stroke-current",
-                  )}
+                  className={cn("w-5 h-5", active ? "text-[#1677ff]" : "text-gray-400")}
                   strokeWidth={active ? 2.5 : 2}
                 />
                 <span>{item.label}</span>

@@ -4,18 +4,21 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createSupabaseBrowserClient } from '@/lib/supabase'
 import { formatRelativeTime } from '@/lib/utils'
-import { X } from 'lucide-react'
+import { X, ClipboardList, CheckCircle2, XCircle, Navigation, MapPin, Wrench, Flag, Bell } from 'lucide-react'
+import type { LucideProps } from 'lucide-react'
 import { toast } from 'sonner'
 
-const TYPE_ICONS: Record<string, string> = {
-  new_application:      '📋',
-  application_accepted: '✅',
-  application_declined: '❌',
-  en_route:             '🛵',
-  arrived:              '📍',
-  in_progress:          '🔨',
-  done:                 '🏁',
-  job_confirmed:        '🎉',
+type IconComponent = React.ComponentType<LucideProps>
+
+const TYPE_ICON_MAP: Record<string, IconComponent> = {
+  new_application:      ClipboardList,
+  application_accepted: CheckCircle2,
+  application_declined: XCircle,
+  en_route:             Navigation,
+  arrived:              MapPin,
+  in_progress:          Wrench,
+  done:                 Flag,
+  job_confirmed:        CheckCircle2,
 }
 
 const PROVIDER_TYPES = new Set(['application_accepted', 'application_declined', 'job_confirmed'])
@@ -80,20 +83,23 @@ export function NotificationList({ initialNotifications, userId }: {
       </div>
       {notifications.map((n) => {
         const url = getNotificationUrl(n.type, n.booking_id)
+        const NotifIcon = TYPE_ICON_MAP[n.type] ?? Bell
         const inner = (
           <div
-            className={`flex items-start gap-3 p-4 rounded-2xl border transition-colors ${
-              n.is_read ? 'bg-white border-slate-100' : 'bg-indigo-50 border-indigo-100'
-            } ${url ? 'hover:bg-slate-50 cursor-pointer' : ''}`}
+            className={`flex items-start gap-3 p-4 rounded-lg border transition-colors ${
+              n.is_read ? 'bg-white border-[#f0f0f0]' : 'bg-[#e6f4ff] border-[#91caff]'
+            } ${url ? 'hover:bg-gray-50 cursor-pointer' : ''}`}
           >
-            <span className="text-xl flex-shrink-0 mt-0.5">{TYPE_ICONS[n.type] ?? '🔔'}</span>
+            <span className="w-8 h-8 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <NotifIcon className="w-4 h-4 text-[#1677ff]" />
+            </span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-slate-800">{n.message}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{formatRelativeTime(n.created_at)}</p>
+              <p className="text-sm text-gray-800">{n.message}</p>
+              <p className="text-xs text-gray-400 mt-0.5">{formatRelativeTime(n.created_at)}</p>
             </div>
             <div className="flex items-center gap-1 flex-shrink-0 mt-0.5">
               {!n.is_read && (
-                <span className="w-2 h-2 rounded-full bg-indigo-500" />
+                <span className="w-2 h-2 rounded-full bg-[#1677ff]" />
               )}
               <button
                 onClick={(e) => {

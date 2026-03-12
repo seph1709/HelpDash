@@ -1,221 +1,42 @@
-# HelpDash
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A hyperlocal service marketplace connecting residents with verified local taskers for on-demand home services.
+## Getting Started
 
----
-
-## Business Context
-
-**Problem:** Residents in Philippine barangays rely on informal word-of-mouth to find plumbers, electricians, cleaners, and other service workers. This creates friction, safety concerns, and no accountability layer for either party.
-
-**Solution:** HelpDash is a two-sided marketplace where clients post jobs and verified providers apply — with real-time tracking, in-app chat, ratings, and dispute resolution built in.
-
-**Target Users:**
-
-- **Clients** — Residents who need household or errands services
-- **Providers** — Local skilled workers (taskers) looking for consistent job leads
-
----
-
-## MVP Features
-
-### For Clients
-
-- Register and post jobs with category, budget, urgency, location, photos, and voice notes
-- Browse nearby available providers with ratings and service radius
-- Manage bookings through a full lifecycle (pending → accepted → in progress → done)
-- In-app chat with assigned provider
-- Rate providers and raise disputes
-
-### For Providers
-
-- Onboarding with ID verification (AI-parsed from photo upload)
-- Browse job feed with early access for premium subscribers
-- Apply to jobs, set ETA, and share live location
-- Manage earnings and completed job history
-- Free and Premium subscription tiers
-
-### Platform
-
-- Push notifications for booking events
-- Real-time live map with provider location sharing
-- GCash and cash payment methods
-- Progressive Web App (installable, offline-ready)
-
----
-
-## Architecture
-
-```
-HelpDash/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── (auth)/             # Login & Register pages
-│   │   ├── (client)/           # Client-facing pages (dashboard, bookings, providers)
-│   │   ├── provider/           # Provider-facing pages (job feed, bookings, profile)
-│   │   └── api/                # REST API route handlers
-│   ├── controllers/            # Business logic (auth, jobs, providers, ID parse)
-│   ├── models/                 # Data access layer (user, provider, job)
-│   ├── views/
-│   │   ├── components/
-│   │   │   ├── shared/         # Reusable UI components (Button, Card, Badge, etc.)
-│   │   │   ├── map/            # Leaflet map components (LiveMap, LocationPicker)
-│   │   │   ├── chat/           # ChatBox component
-│   │   │   └── booking/        # Booking-specific components
-│   │   └── layouts/            # AppShell layout
-│   ├── db/                     # Drizzle ORM config and schema
-│   ├── hooks/                  # React hooks (useUser)
-│   ├── lib/                    # Supabase client, utilities, notifications
-│   └── types/                  # Shared TypeScript types
-```
-
-**Data Flow:**
-
-```
-Client/Browser
-     |
-Next.js App Router (SSR + RSC)
-     |
-API Routes (src/app/api/)
-     |
-Controllers (business logic)
-     |
-Models (Drizzle ORM)
-     |
-PostgreSQL via Supabase
-```
-
-**Key Architectural Decisions:**
-| Concern | Choice | Reason |
-|---|---|---|
-| Database | Supabase + PostgreSQL | Managed Postgres with auth and storage built-in |
-| ORM | Drizzle ORM | Type-safe, lightweight, no magic |
-| Auth | Supabase SSR | Server-side session handling with Next.js |
-| Maps | Leaflet + react-leaflet | Open-source, no API key cost |
-| Forms | React Hook Form + Zod | Runtime validation with TypeScript inference |
-| Styling | Tailwind CSS v4 | Utility-first, fast iteration |
-| PWA | next-pwa | Offline support and home screen install |
-
----
-
-## Tech Stack
-
-| Layer          | Technology                 |
-| -------------- | -------------------------- |
-| Framework      | Next.js 16 (App Router)    |
-| Language       | TypeScript 5               |
-| UI             | React 19 + Tailwind CSS v4 |
-| Database       | PostgreSQL (Supabase)      |
-| ORM            | Drizzle ORM                |
-| Auth & Storage | Supabase                   |
-| Maps           | Leaflet + react-leaflet    |
-| Forms          | React Hook Form + Zod      |
-| Icons          | Lucide React               |
-| Toasts         | Sonner                     |
-| PWA            | next-pwa                   |
-
----
-
-## Development Setup
-
-### Prerequisites
-
-- Node.js 20+
-- A [Supabase](https://supabase.com) project with a PostgreSQL database
-
-### Environment Variables
-
-Create a `.env.local` file in the project root:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-DATABASE_URL=your_postgres_connection_string
-```
-
-### Installation
+First, run the development server:
 
 ```bash
+# Clone the repo
+git clone https://github.com/seph1709/HelpDash.git
+cd HelpDash
+
+# Install dependencies
 npm install
-```
 
-### Database Migration
+# Copy environment variables
+cp .env.example .env.local
+# Fill in your Supabase credentials (see below)
 
-```bash
-npx drizzle-kit push
-```
-
-Or via the in-app migration endpoint (development only):
-
-```
-GET /api/migrate-now
-```
-
-### Run Development Server
-
-```bash
+# Run the development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Build for Production
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-npm run build
-npm start
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## Job Categories
+To learn more about Next.js, take a look at the following resources:
 
-| Category         | Description                       |
-| ---------------- | --------------------------------- |
-| Plumbing         | Pipe repairs, leak fixes          |
-| Electrical       | Wiring, outlets, fixtures         |
-| Laundry          | Wash and fold services            |
-| Cleaning         | Home and office cleaning          |
-| Carpentry        | Furniture, repairs, installations |
-| AC / Aircon      | Cleaning, repair, installation    |
-| Painting         | Interior and exterior             |
-| Appliance Repair | TV, ref, washing machine          |
-| Moving / Angkat  | Furniture and box moving          |
-| Errands / Padala | Delivery and errands              |
-| Tutoring         | Academic assistance               |
-| Other            | General tasks                     |
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Booking Lifecycle
+## Deploy on Vercel
 
-```
-pending -> accepted -> en_route -> arrived -> in_progress -> done
-                                                           -> disputed
-                                                           -> cancelled
-                                                           -> no_show
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-## Provider Subscription Tiers
-
-| Feature            | Free     | Premium           |
-| ------------------ | -------- | ----------------- |
-| Job feed access    | Delayed  | Early access      |
-| Profile visibility | Standard | Boosted           |
-| Subscription       | Free     | Paid (GCash/Cash) |
-
-<!-- ---
-
-## Deployment
-
-The recommended deployment target is [Vercel](https://vercel.com) — it integrates directly with Next.js and supports Edge Functions.
-
-1. Push to your Git repository
-2. Import the project in Vercel
-3. Set all environment variables from `.env.local`
-4. Deploy
-
-For the database, Supabase handles all PostgreSQL hosting and connection pooling. -->
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

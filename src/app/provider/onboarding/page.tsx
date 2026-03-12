@@ -9,7 +9,8 @@ import { Input, Textarea, Select } from "@/views/components/shared/Input";
 import { Card } from "@/views/components/shared/Card";
 import { Badge } from "@/views/components/shared/Badge";
 import { JOB_CATEGORIES, type JobCategory } from "@/types";
-import { Upload, CheckCircle, AlertCircle, X, ChevronLeft } from "lucide-react";
+import { Upload, CheckCircle, AlertCircle, X, ChevronLeft, CreditCard, Bell, Star, Zap, Check } from "lucide-react";
+import { CategoryIcon } from "@/lib/category-icons";
 
 const STEPS = ["ID Verification", "Skills & Rate", "Done"] as const;
 
@@ -41,7 +42,6 @@ export default function ProviderOnboardingPage() {
     reader.onload = async (ev) => {
       const dataUrl = ev.target?.result as string;
       setIdPreview(dataUrl);
-      // Try OCR
       setOcrLoading(true);
       try {
         const base64 = dataUrl.split(",")[1];
@@ -87,7 +87,6 @@ export default function ProviderOnboardingPage() {
       } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
-      // Upload ID photo to Supabase Storage
       let idPhotoUrl = "";
       if (idFile) {
         const filePath = `ids/${user.id}/${Date.now()}_${idFile.name}`;
@@ -102,7 +101,6 @@ export default function ProviderOnboardingPage() {
         }
       }
 
-      // Upsert provider profile
       await supabase.from("providers").upsert({
         id: user.id,
         skills: selectedSkills,
@@ -138,25 +136,25 @@ export default function ProviderOnboardingPage() {
         {step > 0 && step < 2 && (
           <button
             onClick={() => setStep((s) => s - 1)}
-            className="p-2 rounded-xl hover:bg-slate-100 -ml-2"
+            className="p-2 rounded-lg hover:bg-gray-50 -ml-2"
           >
-            <ChevronLeft className="w-5 h-5 text-slate-600" />
+            <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
         )}
         <div>
-          <h1 className="font-bold text-slate-900">
+          <h1 className="font-semibold text-gray-900">
             Set Up Your Provider Profile
           </h1>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-gray-400">
             {STEPS[step]} · Step {step + 1} of {STEPS.length}
           </p>
         </div>
       </div>
 
       {/* Progress */}
-      <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+      <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
         <div
-          className="h-full bg-indigo-600 rounded-full transition-all duration-300"
+          className="h-full bg-[#1677ff] rounded-full transition-all duration-300"
           style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
         />
       </div>
@@ -164,15 +162,15 @@ export default function ProviderOnboardingPage() {
       {/* Step 0: ID Verification */}
       {step === 0 && (
         <div className="flex flex-col gap-4">
-          <Card className="bg-indigo-50 border-indigo-100">
-            <p className="text-sm font-medium text-indigo-800">
-              🪪 Why do we need your ID?
+          <div className="rounded-lg bg-[#e6f4ff] border border-[#91caff] p-4">
+            <p className="flex items-center gap-1.5 text-sm font-medium text-[#1677ff]">
+              <CreditCard className="w-4 h-4" /> Why do we need your ID?
             </p>
-            <p className="text-xs text-indigo-600 mt-1">
+            <p className="text-xs text-[#096dd9] mt-1">
               Government ID verification builds trust with clients. Your ID is
               stored securely and never shared publicly.
             </p>
-          </Card>
+          </div>
 
           <div>
             <input
@@ -188,7 +186,7 @@ export default function ProviderOnboardingPage() {
                 <img
                   src={idPreview}
                   alt="ID preview"
-                  className="w-full rounded-xl border border-slate-200 object-cover max-h-48"
+                  className="w-full rounded-lg border border-[#d9d9d9] object-cover max-h-48"
                 />
                 <button
                   onClick={() => {
@@ -196,13 +194,13 @@ export default function ProviderOnboardingPage() {
                     setIdPreview(null);
                     setOcrDone(false);
                   }}
-                  className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-sm border border-slate-200"
+                  className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-sm border border-[#d9d9d9]"
                 >
-                  <X className="w-4 h-4 text-slate-600" />
+                  <X className="w-4 h-4 text-gray-600" />
                 </button>
                 {ocrLoading && (
-                  <div className="absolute inset-0 bg-black/40 rounded-xl flex items-center justify-center">
-                    <div className="bg-white rounded-xl px-4 py-3 text-sm font-medium text-slate-700">
+                  <div className="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center">
+                    <div className="bg-white rounded-lg px-4 py-3 text-sm font-medium text-gray-700">
                       Scanning ID...
                     </div>
                   </div>
@@ -212,16 +210,16 @@ export default function ProviderOnboardingPage() {
               <button
                 type="button"
                 onClick={() => fileRef.current?.click()}
-                className="w-full border-2 border-dashed border-slate-200 rounded-2xl p-8 flex flex-col items-center gap-3 hover:border-indigo-300 hover:bg-indigo-50 transition-all"
+                className="w-full border-2 border-dashed border-[#d9d9d9] rounded-lg p-8 flex flex-col items-center gap-3 hover:border-[#1677ff] hover:bg-[#e6f4ff] transition-all"
               >
-                <div className="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center">
-                  <Upload className="w-6 h-6 text-slate-400" />
+                <div className="w-14 h-14 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <Upload className="w-6 h-6 text-gray-400" />
                 </div>
                 <div className="text-center">
-                  <p className="font-medium text-slate-700">
+                  <p className="font-medium text-gray-700">
                     Upload Government ID
                   </p>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-gray-400 mt-0.5">
                     SSS, UMID, PhilHealth, Postal, Voter&apos;s ID
                   </p>
                 </div>
@@ -233,11 +231,11 @@ export default function ProviderOnboardingPage() {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2 text-sm">
                 {parsedName ? (
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-[#52c41a]" />
                 ) : (
-                  <AlertCircle className="w-4 h-4 text-amber-500" />
+                  <AlertCircle className="w-4 h-4 text-[#faad14]" />
                 )}
-                <span className="text-slate-600">
+                <span className="text-gray-600">
                   {parsedName
                     ? "ID auto-filled — confirm below"
                     : "Fill in details manually"}
@@ -246,25 +244,25 @@ export default function ProviderOnboardingPage() {
 
               <div className="flex flex-col gap-3">
                 <div>
-                  <label className="text-sm font-medium text-slate-700 block mb-1.5">
+                  <label className="text-sm font-medium text-gray-700 block mb-1.5">
                     Full name (from ID)
                   </label>
                   <input
                     value={parsedName}
                     onChange={(e) => setParsedName(e.target.value)}
                     placeholder="Juan dela Cruz"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-slate-700 block mb-1.5">
+                  <label className="text-sm font-medium text-gray-700 block mb-1.5">
                     Address (from ID)
                   </label>
                   <input
                     value={parsedAddress}
                     onChange={(e) => setParsedAddress(e.target.value)}
                     placeholder="123 Street, Barangay, Quezon City"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
                   />
                 </div>
               </div>
@@ -286,33 +284,35 @@ export default function ProviderOnboardingPage() {
       {step === 1 && (
         <div className="flex flex-col gap-4">
           <div>
-            <h2 className="font-semibold text-slate-900">
+            <h2 className="font-semibold text-gray-900">
               What services do you offer?
             </h2>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-xs text-gray-400 mt-0.5">
               Select all that apply — you&apos;ll only see matching jobs
             </p>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
-            {ALL_SKILLS.map(({ key, label, icon }) => (
+            {ALL_SKILLS.map(({ key, label }) => (
               <button
                 key={key}
                 type="button"
                 onClick={() => toggleSkill(key)}
-                className={`flex flex-col items-center gap-1.5 p-2.5 rounded-2xl border-2 transition-all ${
+                className={`flex flex-col items-center gap-1.5 p-2.5 rounded-lg border-2 transition-all ${
                   selectedSkills.includes(key)
-                    ? "border-indigo-500 bg-indigo-50"
-                    : "border-slate-100 bg-white hover:border-indigo-200"
+                    ? "border-[#1677ff] bg-[#e6f4ff]"
+                    : "border-[#f0f0f0] bg-white hover:border-[#91caff]"
                 }`}
               >
-                <span className="text-2xl">{icon}</span>
-                <span className="text-xs font-medium text-slate-700 text-center leading-tight">
+                <span className="w-9 h-9 rounded-lg bg-[#e6f4ff] flex items-center justify-center">
+                  <CategoryIcon category={key} className="w-4 h-4 text-[#1677ff]" />
+                </span>
+                <span className="text-xs font-medium text-gray-700 text-center leading-tight">
                   {label}
                 </span>
                 {selectedSkills.includes(key) && (
-                  <div className="w-4 h-4 rounded-full bg-indigo-600 flex items-center justify-center">
-                    <span className="text-white text-[10px]">✓</span>
+                  <div className="w-4 h-4 rounded-full bg-[#1677ff] flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 text-white" />
                   </div>
                 )}
               </button>
@@ -323,14 +323,14 @@ export default function ProviderOnboardingPage() {
             <div className="flex flex-wrap gap-1.5">
               {selectedSkills.map((s) => (
                 <Badge key={s} variant="info">
-                  {JOB_CATEGORIES[s].icon} {JOB_CATEGORIES[s].label}
+                  {JOB_CATEGORIES[s].label}
                 </Badge>
               ))}
             </div>
           )}
 
           <div>
-            <label className="text-sm font-medium text-slate-700 block mb-1.5">
+            <label className="text-sm font-medium text-gray-700 block mb-1.5">
               Short bio (optional)
             </label>
             <textarea
@@ -338,7 +338,7 @@ export default function ProviderOnboardingPage() {
               onChange={(e) => setBio(e.target.value)}
               placeholder="e.g. Licensed plumber with 10 years experience in QC. Specializing in leaks, pipes, and installations."
               rows={3}
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
             />
           </div>
 
@@ -348,23 +348,18 @@ export default function ProviderOnboardingPage() {
             placeholder="e.g. 250"
             hint="Clients will see this on your profile"
             value={hourlyRate}
-            min="0" // Prevents the stepper arrows
+            min="0"
             onKeyDown={(e) => {
-              // If user hits "-", "e", or "E", stop the event immediately
               if (e.key === "-" || e.key === "e" || e.key === "E") {
                 e.preventDefault();
               }
             }}
             onChange={(e) => {
               const val = e.target.value;
-
-              // 1. Allow empty string so users can backspace/clear the input
               if (val === "") {
                 setHourlyRate("");
                 return;
               }
-
-              // 2. Convert to number, get Absolute value, then back to string for the state
               const positiveValue = Math.abs(Number(val));
               setHourlyRate(String(positiveValue));
             }}
@@ -385,29 +380,29 @@ export default function ProviderOnboardingPage() {
       {/* Step 2: Done */}
       {step === 2 && (
         <div className="flex flex-col items-center gap-6 py-8 text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
-            <CheckCircle className="w-10 h-10 text-green-500" />
+          <div className="w-20 h-20 bg-[#f6ffed] rounded-full flex items-center justify-center">
+            <CheckCircle className="w-10 h-10 text-[#52c41a]" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-900">
-              You&apos;re all set! 🎉
+            <h2 className="text-xl font-semibold text-gray-900">
+              You&apos;re all set!
             </h2>
-            <p className="text-slate-500 text-sm mt-2 max-w-xs">
-              Your provider profile is live. Toggle availability to start
-              receiving job requests in your area.
+            <p className="text-gray-400 text-sm mt-2 max-w-xs">
+              Your provider profile is live. You&apos;ll automatically appear as
+              available when you use the app.
             </p>
           </div>
-          <Card className="w-full bg-indigo-50 border-indigo-100 text-left">
-            <p className="text-sm font-semibold text-indigo-800 mb-2">
+          <div className="rounded-lg bg-[#e6f4ff] border border-[#91caff] text-left w-full p-4">
+            <p className="text-sm font-semibold text-[#1677ff] mb-2">
               What happens next?
             </p>
-            <ul className="text-xs text-indigo-700 space-y-1.5">
-              <li>✅ Your profile is visible to nearby clients</li>
-              <li>🔔 You&apos;ll get notified when matching jobs are posted</li>
-              <li>⚡ Upgrade to Premium to see jobs 4 minutes earlier</li>
-              <li>⭐ Build your rating by completing jobs reliably</li>
-            </ul>
-          </Card>
+            <div className="flex flex-col gap-2 text-xs text-[#1677ff]">
+              <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Your profile is visible to nearby clients</div>
+              <div className="flex items-center gap-2"><Bell className="w-3.5 h-3.5 flex-shrink-0" /> You&apos;ll get notified when matching jobs are posted</div>
+              <div className="flex items-center gap-2"><Zap className="w-3.5 h-3.5 flex-shrink-0" /> Upgrade to Premium to see jobs 4 minutes earlier</div>
+              <div className="flex items-center gap-2"><Star className="w-3.5 h-3.5 flex-shrink-0" /> Build your rating by completing jobs reliably</div>
+            </div>
+          </div>
           <Button
             onClick={() => router.push("/provider/dashboard")}
             fullWidth

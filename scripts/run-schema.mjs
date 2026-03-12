@@ -8,11 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const schema = readFileSync(join(__dirname, '../supabase/schema.sql'), 'utf8')
 
 const client = new Client({
-  host: '2406:da18:243:7414:8a8a:5709:69a7:ab14',
-  port: 5432,
-  database: 'postgres',
-  user: 'postgres',
-  password: 'u.62S*w!T*tVMJ8',
+  connectionString: process.env.DATABASE_URL_UNPOOLED,
   ssl: { rejectUnauthorized: false },
 })
 

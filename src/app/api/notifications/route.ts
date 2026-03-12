@@ -12,8 +12,22 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
   }
 
-  // Admin client bypasses RLS — safe here because we validated the caller is authenticated
+  // Admin client bypasses RLS — reused for both participant check and insert
   const admin = createSupabaseAdminClient()
+
+  // Booking-participant guard: if bookingId is provided, caller must be client or provider
+  if (bookingId) {
+    const { data: booking } = await admin
+      .from('bookings')
+      .select('client_id, provider_id')
+      .eq('id', bookingId)
+      .single()
+
+    if (!booking || (booking.client_id !== user.id && booking.provider_id !== user.id)) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+  }
+
   const { error } = await admin.from('notifications').insert({
     user_id: userId,
     type,
