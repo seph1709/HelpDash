@@ -87,11 +87,11 @@ export function NotificationList({ initialNotifications, userId }: {
         const inner = (
           <div
             className={`flex items-start gap-3 p-4 rounded-lg border transition-colors ${
-              n.is_read ? 'bg-white border-[#f0f0f0]' : 'bg-[#e6f4ff] border-[#91caff]'
+              n.is_read ? 'bg-white border-[#f0f0f0]' : 'bg-[#fff3e0] border-[#ffcc80]'
             } ${url ? 'hover:bg-gray-50 cursor-pointer' : ''}`}
           >
-            <span className="w-8 h-8 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0 mt-0.5">
-              <NotifIcon className="w-4 h-4 text-[#1677ff]" />
+            <span className="w-8 h-8 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <NotifIcon className="w-4 h-4 text-[#FF9012]" />
             </span>
             <div className="flex-1 min-w-0">
               <p className="text-sm text-gray-800">{n.message}</p>
@@ -99,7 +99,7 @@ export function NotificationList({ initialNotifications, userId }: {
             </div>
             <div className="flex items-center gap-1 flex-shrink-0 mt-0.5">
               {!n.is_read && (
-                <span className="w-2 h-2 rounded-full bg-[#1677ff]" />
+                <span className="w-2 h-2 rounded-full bg-[#FF9012]" />
               )}
               <button
                 onClick={(e) => {

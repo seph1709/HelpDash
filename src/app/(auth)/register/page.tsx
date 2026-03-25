@@ -81,7 +81,7 @@ export default function RegisterPage() {
       });
       if (signInError) throw new Error(signInError.message);
 
-      toast.success("Account created! Welcome to HelpDash.");
+      toast.success("Account created! Welcome to mykuya.");
 
       if (data.role === "provider" || data.role === "both") {
         router.push("/provider/onboarding");
@@ -107,14 +107,14 @@ export default function RegisterPage() {
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                 i <= stepIndex
-                  ? "bg-[#1677ff] text-white"
+                  ? "bg-[#FF9012] text-white"
                   : "bg-gray-100 text-gray-400"
               }`}
             >
               {i < stepIndex ? "✓" : i + 1}
             </div>
             <span
-              className={`text-xs font-medium ${i === stepIndex ? "text-[#1677ff]" : "text-gray-400"}`}
+              className={`text-xs font-medium ${i === stepIndex ? "text-[#FF9012]" : "text-gray-400"}`}
             >
               {s}
             </span>
@@ -165,7 +165,7 @@ export default function RegisterPage() {
         {step === "Role" && (
           <>
             <h2 className="font-semibold text-gray-900">
-              How will you use HelpDash?
+              How will you use mykuya?
             </h2>
             <div className="grid grid-cols-1 gap-3">
               {[
@@ -192,8 +192,8 @@ export default function RegisterPage() {
                   key={option.value}
                   className={`flex items-center gap-3 p-3.5 rounded-lg border-2 cursor-pointer transition-all ${
                     role === option.value
-                      ? "border-[#1677ff] bg-[#e6f4ff]"
-                      : "border-[#f0f0f0] hover:border-[#91caff]"
+                      ? "border-[#FF9012] bg-[#fff3e0]"
+                      : "border-[#f0f0f0] hover:border-[#ffcc80]"
                   }`}
                 >
                   <input
@@ -202,8 +202,8 @@ export default function RegisterPage() {
                     className="sr-only"
                     {...register("role")}
                   />
-                  <span className="w-10 h-10 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                    <option.Icon className="w-5 h-5 text-[#1677ff]" />
+                  <span className="w-10 h-10 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                    <option.Icon className="w-5 h-5 text-[#FF9012]" />
                   </span>
                   <div>
                     <p className="font-medium text-gray-900 text-sm">
@@ -286,7 +286,7 @@ export default function RegisterPage() {
         Already have an account?{" "}
         <Link
           href="/login"
-          className="text-[#1677ff] font-medium hover:underline"
+          className="text-[#0068C9] font-medium hover:underline"
         >
           Sign in
         </Link>

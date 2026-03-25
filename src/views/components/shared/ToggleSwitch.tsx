@@ -40,7 +40,7 @@ export function ToggleSwitch({ checked: initialChecked, providerId, label }: Tog
       onClick={toggle}
       disabled={isPending}
       className={cn(
-        'relative inline-flex items-center h-7 w-12 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1677ff] focus-visible:ring-offset-2',
+        'relative inline-flex items-center h-7 w-12 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9012] focus-visible:ring-offset-2',
         checked ? 'bg-[#52c41a]' : 'bg-gray-200',
         isPending && 'opacity-70'
       )}

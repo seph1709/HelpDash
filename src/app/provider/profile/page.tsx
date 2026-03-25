@@ -100,7 +100,7 @@ export default function ProviderProfilePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 rounded-full border-2 border-[#1677ff] border-t-transparent animate-spin" />
+        <div className="w-8 h-8 rounded-full border-2 border-[#FF9012] border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -109,7 +109,7 @@ export default function ProviderProfilePage() {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between pt-2">
         <div>
-          <p className="text-xs font-medium uppercase tracking-widest text-[#1677ff] mb-0.5">Profile</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-[#0068C9] mb-0.5">Profile</p>
           <h1 className="text-xl font-semibold text-gray-900">My Profile</h1>
         </div>
         <Button
@@ -131,7 +131,7 @@ export default function ProviderProfilePage() {
               <button
                 type="button"
                 onClick={() => setShowAvatarPicker(!showAvatarPicker)}
-                className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#1677ff] rounded-full flex items-center justify-center shadow border-2 border-white"
+                className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#FF9012] rounded-full flex items-center justify-center shadow border-2 border-white"
               >
                 <Pencil className="w-3 h-3 text-white" />
               </button>
@@ -208,12 +208,12 @@ export default function ProviderProfilePage() {
                   onClick={() => toggleSkill(key)}
                   className={`flex flex-col items-center gap-1.5 p-2 rounded-lg border-2 text-xs transition-all ${
                     selectedSkills.includes(key)
-                      ? "border-[#1677ff] bg-[#e6f4ff]"
+                      ? "border-[#FF9012] bg-[#fff3e0]"
                       : "border-[#f0f0f0] bg-white"
                   }`}
                 >
-                  <span className="w-8 h-8 rounded-lg bg-[#e6f4ff] flex items-center justify-center">
-                    <CategoryIcon category={key} className="w-4 h-4 text-[#1677ff]" />
+                  <span className="w-8 h-8 rounded-lg bg-[#fff3e0] flex items-center justify-center">
+                    <CategoryIcon category={key} className="w-4 h-4 text-[#FF9012]" />
                   </span>
                   <span className="font-medium text-gray-700 text-center leading-tight">
                     {meta.label}
@@ -250,7 +250,7 @@ export default function ProviderProfilePage() {
                 onChange={(e) => setBio(e.target.value)}
                 placeholder="Tell clients about your experience and specialty..."
                 rows={3}
-                className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
+                className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012] hover:border-[#FF9012] transition-colors"
               />
             </div>
             <Input
@@ -313,8 +313,8 @@ export default function ProviderProfilePage() {
             return (
               <Card key={booking.id}>
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                    <CategoryIcon category={booking.job?.category} className="w-4 h-4 text-[#1677ff]" />
+                  <div className="w-10 h-10 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                    <CategoryIcon category={booking.job?.category} className="w-4 h-4 text-[#FF9012]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-gray-900 text-sm leading-tight">

@@ -56,7 +56,7 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 rounded-full border-2 border-[#1677ff] border-t-transparent animate-spin" />
+        <div className="w-8 h-8 rounded-full border-2 border-[#FF9012] border-t-transparent animate-spin" />
       </div>
     )
   }
@@ -64,7 +64,7 @@ export default function SettingsPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="pt-2">
-        <p className="text-xs font-medium uppercase tracking-widest text-[#1677ff] mb-0.5">Account</p>
+        <p className="text-xs font-medium uppercase tracking-widest text-[#0068C9] mb-0.5">Account</p>
         <h1 className="text-xl font-semibold text-gray-900">Settings</h1>
       </div>
 

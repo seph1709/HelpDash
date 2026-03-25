@@ -239,7 +239,7 @@ export function BookingActions({
             onChange={(e) => setComment(e.target.value)}
             placeholder="How was the job done? Any details to share..."
             rows={3}
-            className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
+            className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012] hover:border-[#FF9012] transition-colors"
           />
         </div>
 
@@ -249,7 +249,7 @@ export function BookingActions({
           onClick={() => setWouldRehire((v) => !v)}
           className="flex items-center gap-3 text-sm text-gray-700"
         >
-          <div className={`w-10 h-6 rounded-full transition-colors flex-shrink-0 ${wouldRehire ? 'bg-[#1677ff]' : 'bg-gray-200'}`}>
+          <div className={`w-10 h-6 rounded-full transition-colors flex-shrink-0 ${wouldRehire ? 'bg-[#FF9012]' : 'bg-gray-200'}`}>
             <div className={`w-4 h-4 bg-white rounded-full mt-1 transition-transform shadow ${wouldRehire ? 'translate-x-5' : 'translate-x-1'}`} />
           </div>
           Would hire this provider again

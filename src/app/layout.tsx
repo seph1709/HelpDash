@@ -11,15 +11,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HelpDash — Local Services in Quezon City",
+  title: "mykuya — Local Services in Quezon City",
   description:
     "Find trusted plumbers, electricians, laundry, and more within 2km. Post a job in 60 seconds.",
   manifest: "/manifest.json",
-  appleWebApp: { capable: true, statusBarStyle: "default", title: "HelpDash" },
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "mykuya" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1677ff",
+  themeColor: "#FF9012",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

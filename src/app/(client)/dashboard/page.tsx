@@ -43,7 +43,7 @@ export default async function ClientDashboardPage() {
     <div className="flex flex-col gap-4">
       {/* Greeting */}
       <div className="pt-2">
-        <p className="text-xs font-medium text-[#1677ff] mb-0.5">Client Dashboard</p>
+        <p className="text-xs font-medium text-[#0068C9] mb-0.5">Client Dashboard</p>
         <h1 className="text-xl font-semibold text-gray-900">Welcome back, {name}</h1>
         <p className="text-sm text-gray-400 flex items-center gap-1 mt-0.5">
           <MapPin className="w-3.5 h-3.5" />
@@ -55,7 +55,7 @@ export default async function ClientDashboardPage() {
 
       {/* Post Job CTA */}
       <Link href="/post-job">
-        <div className="bg-[#1677ff] rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-[#4096ff] transition-colors">
+        <div className="bg-[#FF9012] rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-[#ffaa3c] transition-colors">
           <div>
             <p className="font-semibold text-white">Need help with something?</p>
             <p className="text-blue-100 text-sm mt-0.5">
@@ -89,10 +89,10 @@ export default async function ClientDashboardPage() {
               <Link
                 key={cat}
                 href={`/post-job?category=${cat}`}
-                className="flex flex-col items-center gap-1.5 p-2.5 rounded-lg bg-white border border-[#f0f0f0] hover:border-[#1677ff] hover:bg-[#e6f4ff] transition-all text-center"
+                className="flex flex-col items-center gap-1.5 p-2.5 rounded-lg bg-white border border-[#f0f0f0] hover:border-[#FF9012] hover:bg-[#fff3e0] transition-all text-center"
               >
-                <span className="w-9 h-9 rounded-lg bg-[#e6f4ff] flex items-center justify-center">
-                  <CategoryIcon category={cat} className="w-4 h-4 text-[#1677ff]" />
+                <span className="w-9 h-9 rounded-lg bg-[#fff3e0] flex items-center justify-center">
+                  <CategoryIcon category={cat} className="w-4 h-4 text-[#FF9012]" />
                 </span>
                 <span className="text-xs text-gray-600 font-medium leading-tight">
                   {meta.label}
@@ -108,7 +108,7 @@ export default async function ClientDashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-sm font-semibold text-gray-700">Active bookings</h2>
-            <Link href="/bookings" className="text-xs text-[#1677ff] font-medium">
+            <Link href="/bookings" className="text-xs text-[#0068C9] font-medium">
               See all
             </Link>
           </div>
@@ -117,8 +117,8 @@ export default async function ClientDashboardPage() {
               <Link key={booking.id} href={`/bookings/${booking.id}`}>
                 <Card hover padding="sm">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                      <CategoryIcon category={booking.job?.category} className="w-4 h-4 text-[#1677ff]" />
+                    <span className="w-9 h-9 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                      <CategoryIcon category={booking.job?.category} className="w-4 h-4 text-[#FF9012]" />
                     </span>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-sm text-gray-900 truncate">
@@ -143,7 +143,7 @@ export default async function ClientDashboardPage() {
           <h2 className="text-sm font-semibold text-gray-700">Recent jobs</h2>
           <Link
             href="/bookings"
-            className="text-xs text-[#1677ff] font-medium flex items-center gap-0.5"
+            className="text-xs text-[#0068C9] font-medium flex items-center gap-0.5"
           >
             See all <ArrowRight className="w-3 h-3" />
           </Link>
@@ -153,8 +153,8 @@ export default async function ClientDashboardPage() {
             {recentJobs.map((job: Job) => (
               <Card key={job.id} padding="sm">
                 <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                    <CategoryIcon category={job.category} className="w-4 h-4 text-[#1677ff]" />
+                  <span className="w-8 h-8 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                    <CategoryIcon category={job.category} className="w-4 h-4 text-[#FF9012]" />
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm text-gray-900 truncate">

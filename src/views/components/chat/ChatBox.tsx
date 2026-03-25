@@ -163,7 +163,7 @@ export function ChatBox({ bookingId, currentUserId, currentUserName, readonly = 
                 <div
                   className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
                     isMe
-                      ? 'bg-[#1677ff] text-white rounded-br-sm'
+                      ? 'bg-[#FF9012] text-white rounded-br-sm'
                       : 'bg-gray-100 text-gray-800 rounded-bl-sm'
                   }`}
                 >
@@ -188,13 +188,13 @@ export function ChatBox({ bookingId, currentUserId, currentUserName, readonly = 
             onKeyDown={handleKeyDown}
             placeholder="Type a message..."
             rows={1}
-            className="flex-1 px-3 py-2 text-sm rounded-lg border border-[#d9d9d9] bg-gray-50 resize-none focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] focus:bg-white transition-colors"
+            className="flex-1 px-3 py-2 text-sm rounded-lg border border-[#d9d9d9] bg-gray-50 resize-none focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012] focus:bg-white transition-colors"
             style={{ maxHeight: 80, overflowY: 'auto' }}
           />
           <button
             onClick={sendMessage}
             disabled={!input.trim() || sending}
-            className="p-2.5 rounded-lg bg-[#1677ff] text-white hover:bg-[#4096ff] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+            className="p-2.5 rounded-lg bg-[#FF9012] text-white hover:bg-[#ffaa3c] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
             aria-label="Send message"
           >
             <Send className="w-4 h-4" />

@@ -1,11 +1,11 @@
-{
-  "name": "HelpDash",
-  "short_name": "BrgyTasks",
+﻿{
+  "name": "mykuya",
+  "short_name": "mykuya",
   "description": "Find trusted local services within 2km in Quezon City",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F8FAFC",
-  "theme_color": "#4F46E5",
+  "background_color": "#fff8f0",
+  "theme_color": "#FF9012",
   "orientation": "portrait",
   "icons": [
     {

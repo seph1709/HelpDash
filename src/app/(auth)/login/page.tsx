@@ -37,7 +37,6 @@ function LoginForm() {
       if (error) throw new Error(error.message)
       const next = searchParams.get('next') ?? '/dashboard'
       router.push(next)
-      router.refresh()
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Login failed')
     } finally {
@@ -76,7 +75,7 @@ function LoginForm() {
 
       <p className="text-center text-sm text-slate-500 mt-4">
         No account yet?{' '}
-        <Link href="/register" className="text-[#1677ff] font-medium hover:underline">
+        <Link href="/register" className="text-[#0068C9] font-medium hover:underline">
           Register here
         </Link>
       </p>

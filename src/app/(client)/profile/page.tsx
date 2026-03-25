@@ -69,7 +69,7 @@ export default function ClientProfilePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 rounded-full border-2 border-[#1677ff] border-t-transparent animate-spin" />
+        <div className="w-8 h-8 rounded-full border-2 border-[#FF9012] border-t-transparent animate-spin" />
       </div>
     )
   }
@@ -79,7 +79,7 @@ export default function ClientProfilePage() {
       {/* Header */}
       <div className="flex items-center justify-between pt-2">
         <div>
-          <p className="text-xs font-medium uppercase tracking-widest text-[#1677ff] mb-0.5">Account</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-[#0068C9] mb-0.5">Account</p>
           <h1 className="text-xl font-semibold text-gray-900">My Profile</h1>
         </div>
         <Button
@@ -109,7 +109,7 @@ export default function ClientProfilePage() {
               <button
                 type="button"
                 onClick={() => setShowPicker(!showPicker)}
-                className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#1677ff] rounded-full flex items-center justify-center shadow border-2 border-white"
+                className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#FF9012] rounded-full flex items-center justify-center shadow border-2 border-white"
               >
                 <Pencil className="w-3 h-3 text-white" />
               </button>

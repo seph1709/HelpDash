@@ -52,14 +52,14 @@ export function AvatarPicker({ currentUrl, onSelect }: AvatarPickerProps) {
     <div className="flex flex-col gap-3">
       {/* Current preview */}
       {selected && (
-        <div className="flex items-center gap-3 p-3 bg-[#e6f4ff] rounded-lg border border-[#91caff]">
+        <div className="flex items-center gap-3 p-3 bg-[#fff3e0] rounded-lg border border-[#ffcc80]">
           <img
             src={selected}
             alt="Selected avatar"
             className="w-14 h-14 rounded-full bg-white flex-shrink-0"
           />
           <div>
-            <p className="text-sm font-medium text-[#1677ff]">Avatar selected</p>
+            <p className="text-sm font-medium text-[#FF9012]">Avatar selected</p>
             <p className="text-xs text-gray-400 mt-0.5">Save your profile to apply</p>
           </div>
         </div>
@@ -79,9 +79,9 @@ export function AvatarPicker({ currentUrl, onSelect }: AvatarPickerProps) {
               type="button"
               onClick={() => handleSelect(seed)}
               className={cn(
-                'relative rounded-lg p-1.5 border-2 transition-all hover:border-[#1677ff]',
+                'relative rounded-lg p-1.5 border-2 transition-all hover:border-[#FF9012]',
                 isSelected
-                  ? 'border-[#1677ff] bg-[#e6f4ff]'
+                  ? 'border-[#FF9012] bg-[#fff3e0]'
                   : 'border-[#f0f0f0] bg-white'
               )}
             >
@@ -92,7 +92,7 @@ export function AvatarPicker({ currentUrl, onSelect }: AvatarPickerProps) {
                 loading="lazy"
               />
               {isSelected && (
-                <div className="absolute top-0.5 right-0.5 w-5 h-5 bg-[#1677ff] rounded-full flex items-center justify-center shadow">
+                <div className="absolute top-0.5 right-0.5 w-5 h-5 bg-[#FF9012] rounded-full flex items-center justify-center shadow">
                   <Check className="w-3 h-3 text-white" />
                 </div>
               )}

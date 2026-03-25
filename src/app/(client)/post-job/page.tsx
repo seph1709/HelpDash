@@ -170,7 +170,7 @@ export default function PostJobPage() {
       {/* Progress bar */}
       <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
         <div
-          className="h-full bg-[#1677ff] rounded-full transition-all duration-300"
+          className="h-full bg-[#FF9012] rounded-full transition-all duration-300"
           style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
         />
       </div>
@@ -199,12 +199,12 @@ export default function PostJobPage() {
                   className={cn(
                     "flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all",
                     category === key
-                      ? "border-[#1677ff] bg-[#e6f4ff]"
-                      : "border-[#f0f0f0] bg-white hover:border-[#91caff]",
+                      ? "border-[#FF9012] bg-[#fff3e0]"
+                      : "border-[#f0f0f0] bg-white hover:border-[#ffcc80]",
                   )}
                 >
-                  <span className="w-10 h-10 rounded-lg bg-[#e6f4ff] flex items-center justify-center">
-                    <CategoryIcon category={key} className="w-5 h-5 text-[#1677ff]" />
+                  <span className="w-10 h-10 rounded-lg bg-[#fff3e0] flex items-center justify-center">
+                    <CategoryIcon category={key} className="w-5 h-5 text-[#FF9012]" />
                   </span>
                   <span className="text-xs font-medium text-gray-700 text-center leading-tight">
                     {meta.label}
@@ -219,8 +219,8 @@ export default function PostJobPage() {
         {step === 1 && (
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 text-lg font-semibold text-gray-800">
-              <span className="w-8 h-8 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                <CategoryIcon category={category} className="w-4 h-4 text-[#1677ff]" />
+              <span className="w-8 h-8 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                <CategoryIcon category={category} className="w-4 h-4 text-[#FF9012]" />
               </span>
               <span>{selectedCategoryMeta?.label}</span>
             </div>
@@ -255,7 +255,7 @@ export default function PostJobPage() {
                   className={cn(
                     "flex items-center gap-2 p-3 rounded-lg border-2 transition-all",
                     urgency === "asap"
-                      ? "border-[#1677ff] bg-[#e6f4ff]"
+                      ? "border-[#FF9012] bg-[#fff3e0]"
                       : "border-[#f0f0f0] bg-white",
                   )}
                 >
@@ -271,11 +271,11 @@ export default function PostJobPage() {
                   className={cn(
                     "flex items-center gap-2 p-3 rounded-lg border-2 transition-all",
                     urgency === "scheduled"
-                      ? "border-[#1677ff] bg-[#e6f4ff]"
+                      ? "border-[#FF9012] bg-[#fff3e0]"
                       : "border-[#f0f0f0] bg-white",
                   )}
                 >
-                  <Clock className="w-4 h-4 text-[#1677ff]" />
+                  <Clock className="w-4 h-4 text-[#FF9012]" />
                   <div className="text-left">
                     <p className="text-sm font-medium text-gray-900">
                       Schedule

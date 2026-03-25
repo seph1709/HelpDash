@@ -79,7 +79,7 @@ export default async function ProviderDashboardPage() {
     <div className="flex flex-col gap-4">
       {/* Greeting */}
       <div className="pt-2">
-        <p className="text-xs font-medium text-[#1677ff] mb-0.5">Provider Dashboard</p>
+        <p className="text-xs font-medium text-[#0068C9] mb-0.5">Provider Dashboard</p>
         <h1 className="text-xl font-semibold text-gray-900">Welcome back, {name}</h1>
         <p className="flex items-center gap-1.5 text-sm mt-1">
           <span className="w-1.5 h-1.5 rounded-full bg-[#52c41a] animate-pulse" />
@@ -102,7 +102,7 @@ export default async function ProviderDashboardPage() {
               const stepIndex = JOB_STEPS.findIndex((s) => s.key === b.status)
               return (
                 <Link key={b.id} href={`/provider/bookings/${b.id}`}>
-                  <div className="rounded-lg bg-[#1677ff] p-4 flex flex-col gap-3.5 shadow-[0_4px_12px_rgba(22,119,255,0.3)] hover:shadow-[0_6px_16px_rgba(22,119,255,0.4)] hover:-translate-y-0.5 transition-all cursor-pointer">
+                  <div className="rounded-lg bg-[#FF9012] p-4 flex flex-col gap-3.5 shadow-[0_4px_12px_rgba(255,144,18,0.3)] hover:shadow-[0_6px_16px_rgba(255,144,18,0.4)] hover:-translate-y-0.5 transition-all cursor-pointer">
                     <div className="flex items-center gap-3">
                       <span className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
                         <Briefcase className="w-4 h-4 text-white" />
@@ -192,8 +192,8 @@ export default async function ProviderDashboardPage() {
           <p className="text-xs text-gray-400 mt-0.5">Rating</p>
         </Card>
         <Card padding="sm" className="text-center">
-          <div className="w-8 h-8 rounded-lg bg-[#e6f4ff] flex items-center justify-center mx-auto mb-1.5">
-            <Briefcase className="w-4 h-4 text-[#1677ff]" />
+          <div className="w-8 h-8 rounded-lg bg-[#fff3e0] flex items-center justify-center mx-auto mb-1.5">
+            <Briefcase className="w-4 h-4 text-[#FF9012]" />
           </div>
           <div className="font-bold text-gray-900 text-base leading-none">
             {provider.total_jobs}
@@ -212,7 +212,7 @@ export default async function ProviderDashboardPage() {
 
       {/* Job feed CTA */}
       <Link href="/provider/job-feed">
-        <div className="bg-[#1677ff] rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-[#4096ff] transition-colors">
+        <div className="bg-[#FF9012] rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-[#ffaa3c] transition-colors">
           <div>
             <p className="font-semibold text-white">Browse Job Feed</p>
             <p className="text-blue-100 text-sm mt-0.5">
@@ -231,7 +231,7 @@ export default async function ProviderDashboardPage() {
       <div>
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-sm font-semibold text-gray-700">Recent bookings</h2>
-          <Link href="/provider/bookings" className="text-xs text-[#1677ff] font-medium">
+          <Link href="/provider/bookings" className="text-xs text-[#0068C9] font-medium">
             See all
           </Link>
         </div>
@@ -240,8 +240,8 @@ export default async function ProviderDashboardPage() {
             {recentBookings.map((b: any) => (
               <Card key={b.id} padding="sm">
                 <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                    <Briefcase className="w-4 h-4 text-[#1677ff]" />
+                  <span className="w-8 h-8 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                    <Briefcase className="w-4 h-4 text-[#FF9012]" />
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm text-gray-900 truncate">

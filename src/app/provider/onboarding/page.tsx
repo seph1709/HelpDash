@@ -154,7 +154,7 @@ export default function ProviderOnboardingPage() {
       {/* Progress */}
       <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
         <div
-          className="h-full bg-[#1677ff] rounded-full transition-all duration-300"
+          className="h-full bg-[#FF9012] rounded-full transition-all duration-300"
           style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
         />
       </div>
@@ -162,8 +162,8 @@ export default function ProviderOnboardingPage() {
       {/* Step 0: ID Verification */}
       {step === 0 && (
         <div className="flex flex-col gap-4">
-          <div className="rounded-lg bg-[#e6f4ff] border border-[#91caff] p-4">
-            <p className="flex items-center gap-1.5 text-sm font-medium text-[#1677ff]">
+          <div className="rounded-lg bg-[#fff3e0] border border-[#ffcc80] p-4">
+            <p className="flex items-center gap-1.5 text-sm font-medium text-[#FF9012]">
               <CreditCard className="w-4 h-4" /> Why do we need your ID?
             </p>
             <p className="text-xs text-[#096dd9] mt-1">
@@ -210,7 +210,7 @@ export default function ProviderOnboardingPage() {
               <button
                 type="button"
                 onClick={() => fileRef.current?.click()}
-                className="w-full border-2 border-dashed border-[#d9d9d9] rounded-lg p-8 flex flex-col items-center gap-3 hover:border-[#1677ff] hover:bg-[#e6f4ff] transition-all"
+                className="w-full border-2 border-dashed border-[#d9d9d9] rounded-lg p-8 flex flex-col items-center gap-3 hover:border-[#FF9012] hover:bg-[#fff3e0] transition-all"
               >
                 <div className="w-14 h-14 bg-gray-100 rounded-lg flex items-center justify-center">
                   <Upload className="w-6 h-6 text-gray-400" />
@@ -251,7 +251,7 @@ export default function ProviderOnboardingPage() {
                     value={parsedName}
                     onChange={(e) => setParsedName(e.target.value)}
                     placeholder="Juan dela Cruz"
-                    className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
+                    className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012] hover:border-[#FF9012] transition-colors"
                   />
                 </div>
                 <div>
@@ -262,7 +262,7 @@ export default function ProviderOnboardingPage() {
                     value={parsedAddress}
                     onChange={(e) => setParsedAddress(e.target.value)}
                     placeholder="123 Street, Barangay, Quezon City"
-                    className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
+                    className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012] hover:border-[#FF9012] transition-colors"
                   />
                 </div>
               </div>
@@ -300,18 +300,18 @@ export default function ProviderOnboardingPage() {
                 onClick={() => toggleSkill(key)}
                 className={`flex flex-col items-center gap-1.5 p-2.5 rounded-lg border-2 transition-all ${
                   selectedSkills.includes(key)
-                    ? "border-[#1677ff] bg-[#e6f4ff]"
-                    : "border-[#f0f0f0] bg-white hover:border-[#91caff]"
+                    ? "border-[#FF9012] bg-[#fff3e0]"
+                    : "border-[#f0f0f0] bg-white hover:border-[#ffcc80]"
                 }`}
               >
-                <span className="w-9 h-9 rounded-lg bg-[#e6f4ff] flex items-center justify-center">
-                  <CategoryIcon category={key} className="w-4 h-4 text-[#1677ff]" />
+                <span className="w-9 h-9 rounded-lg bg-[#fff3e0] flex items-center justify-center">
+                  <CategoryIcon category={key} className="w-4 h-4 text-[#FF9012]" />
                 </span>
                 <span className="text-xs font-medium text-gray-700 text-center leading-tight">
                   {label}
                 </span>
                 {selectedSkills.includes(key) && (
-                  <div className="w-4 h-4 rounded-full bg-[#1677ff] flex items-center justify-center">
+                  <div className="w-4 h-4 rounded-full bg-[#FF9012] flex items-center justify-center">
                     <Check className="w-2.5 h-2.5 text-white" />
                   </div>
                 )}
@@ -338,7 +338,7 @@ export default function ProviderOnboardingPage() {
               onChange={(e) => setBio(e.target.value)}
               placeholder="e.g. Licensed plumber with 10 years experience in QC. Specializing in leaks, pipes, and installations."
               rows={3}
-              className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff] hover:border-[#1677ff] transition-colors"
+              className="w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012] hover:border-[#FF9012] transition-colors"
             />
           </div>
 
@@ -392,11 +392,11 @@ export default function ProviderOnboardingPage() {
               available when you use the app.
             </p>
           </div>
-          <div className="rounded-lg bg-[#e6f4ff] border border-[#91caff] text-left w-full p-4">
-            <p className="text-sm font-semibold text-[#1677ff] mb-2">
+          <div className="rounded-lg bg-[#fff3e0] border border-[#ffcc80] text-left w-full p-4">
+            <p className="text-sm font-semibold text-[#FF9012] mb-2">
               What happens next?
             </p>
-            <div className="flex flex-col gap-2 text-xs text-[#1677ff]">
+            <div className="flex flex-col gap-2 text-xs text-[#FF9012]">
               <div className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 flex-shrink-0" /> Your profile is visible to nearby clients</div>
               <div className="flex items-center gap-2"><Bell className="w-3.5 h-3.5 flex-shrink-0" /> You&apos;ll get notified when matching jobs are posted</div>
               <div className="flex items-center gap-2"><Zap className="w-3.5 h-3.5 flex-shrink-0" /> Upgrade to Premium to see jobs 4 minutes earlier</div>

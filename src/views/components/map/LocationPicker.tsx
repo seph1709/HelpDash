@@ -68,8 +68,8 @@ export function LocationPicker({
       // Add 2km radius circle
       if (showRadius) {
         L.circle([initialLat, initialLng], {
-          color: '#1677ff',
-          fillColor: '#1677ff',
+          color: '#FF9012',
+          fillColor: '#FF9012',
           fillOpacity: 0.05,
           radius: 2000,
           weight: 1.5,
@@ -145,7 +145,7 @@ export function LocationPicker({
       </div>
       {address && (
         <div className="flex items-start gap-2 text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-2">
-          <MapPin className="w-4 h-4 mt-0.5 text-[#1677ff] flex-shrink-0" />
+          <MapPin className="w-4 h-4 mt-0.5 text-[#FF9012] flex-shrink-0" />
           <span>{address}</span>
         </div>
       )}

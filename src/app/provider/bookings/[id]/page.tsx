@@ -78,8 +78,8 @@ export default async function ProviderBookingDetailPage({
       {/* Job info */}
       <Card>
         <div className="flex items-start gap-3">
-          <div className="w-12 h-12 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-            <CategoryIcon category={job?.category} className="w-5 h-5 text-[#1677ff]" />
+          <div className="w-12 h-12 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+            <CategoryIcon category={job?.category} className="w-5 h-5 text-[#FF9012]" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="font-semibold text-gray-900">{job?.title}</p>
@@ -117,7 +117,7 @@ export default async function ProviderBookingDetailPage({
                         done
                           ? "bg-[#52c41a]"
                           : active
-                            ? "bg-[#1677ff] ring-2 ring-[#91caff]"
+                            ? "bg-[#FF9012] ring-2 ring-[#ffcc80]"
                             : "bg-gray-200"
                       }`}
                       style={
@@ -146,7 +146,7 @@ export default async function ProviderBookingDetailPage({
                   key={step}
                   className={`text-[10px] capitalize ${
                     i === currentStep
-                      ? "text-[#1677ff] font-semibold"
+                      ? "text-[#FF9012] font-semibold"
                       : i < currentStep
                         ? "text-[#52c41a]"
                         : "text-gray-300"

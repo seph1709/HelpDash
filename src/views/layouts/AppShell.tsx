@@ -91,15 +91,10 @@ export function AppShell({
   return (
     <div className="flex flex-col min-h-dvh bg-white">
       {/* Top header */}
-      <header className="sticky top-0 z-40 bg-white border-b border-[#f0f0f0]">
+      <header className="sticky top-0 z-40 bg-white border-b border-[#f0f0f0] border-t-2 border-t-[#FF9012]">
         <div className="max-w-screen-xl mx-auto px-4 lg:px-8 h-14 flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-[#1677ff] flex items-center justify-center">
-              <span className="text-white text-xs font-bold">H</span>
-            </div>
-            <span className="font-semibold text-gray-900 text-sm">
-              HelpDash
-            </span>
+          <Link href="/dashboard" className="flex items-center">
+            <img src="/mykuya-logo.png" alt="mykuya" className="h-8 w-auto object-contain" />
           </Link>
 
           {/* Role switcher for 'both' users */}
@@ -110,7 +105,7 @@ export function AppShell({
                 className={cn(
                   "px-3 py-1.5 transition-colors",
                   !pathname.startsWith("/provider")
-                    ? "bg-[#1677ff] text-white"
+                    ? "bg-[#0068C9] text-white"
                     : "text-gray-600 hover:bg-gray-50",
                 )}
               >
@@ -121,7 +116,7 @@ export function AppShell({
                 className={cn(
                   "px-3 py-1.5 transition-colors",
                   pathname.startsWith("/provider")
-                    ? "bg-[#1677ff] text-white"
+                    ? "bg-[#0068C9] text-white"
                     : "text-gray-600 hover:bg-gray-50",
                 )}
               >
@@ -215,14 +210,14 @@ export function AppShell({
                 className={cn(
                   "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
                   active
-                    ? "bg-[#e6f4ff] text-[#1677ff]"
+                    ? "bg-[#e8f2fb] text-[#0068C9]"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                 )}
               >
                 <item.icon
                   className={cn(
                     "w-4 h-4 shrink-0",
-                    active ? "text-[#1677ff]" : "text-gray-400",
+                    active ? "text-[#0068C9]" : "text-gray-400",
                   )}
                   strokeWidth={active ? 2.5 : 2}
                 />
@@ -262,13 +257,13 @@ export function AppShell({
                 href={item.href}
                 className={cn(
                   "flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium transition-all",
-                  active ? "text-[#1677ff]" : "text-gray-400 hover:text-gray-600",
+                  active ? "text-[#0068C9]" : "text-gray-400 hover:text-gray-600",
                   // @ts-expect-error accent property
-                  item.accent && !active && "text-[#1677ff]",
+                  item.accent && !active && "text-[#FF9012]",
                 )}
               >
                 <item.icon
-                  className={cn("w-5 h-5", active ? "text-[#1677ff]" : "text-gray-400")}
+                  className={cn("w-5 h-5", active ? "text-[#0068C9]" : "text-gray-400")}
                   strokeWidth={active ? 2.5 : 2}
                 />
                 <span>{item.label}</span>

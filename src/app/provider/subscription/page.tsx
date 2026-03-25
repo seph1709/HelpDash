@@ -40,7 +40,7 @@ export default function SubscriptionPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="pt-2">
-        <p className="text-xs font-medium uppercase tracking-widest text-[#1677ff] mb-0.5">Subscription</p>
+        <p className="text-xs font-medium uppercase tracking-widest text-[#0068C9] mb-0.5">Subscription</p>
         <h1 className="text-xl font-semibold text-gray-900">Upgrade to Premium</h1>
         <p className="text-sm text-gray-400">₱99 per month — cancel anytime</p>
       </div>

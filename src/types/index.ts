@@ -1,5 +1,5 @@
 // ============================================================
-// HelpDash — Shared TypeScript Types
+// mykuya — Shared TypeScript Types
 // ============================================================
 
 export type UserRole = "client" | "provider" | "both";

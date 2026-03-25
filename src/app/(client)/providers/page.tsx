@@ -31,7 +31,7 @@ export default async function NearbyProvidersPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="pt-2">
-        <p className="text-xs font-medium text-[#1677ff] mb-0.5">Providers</p>
+        <p className="text-xs font-medium text-[#0068C9] mb-0.5">Providers</p>
         <h1 className="text-xl font-semibold text-gray-900">Nearby Providers</h1>
         <p className="text-sm text-gray-400">
           <MapPin className="inline w-3.5 h-3.5 mr-0.5" />

@@ -23,7 +23,7 @@ export default async function NotificationsPage() {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between pt-2">
         <div>
-          <p className="text-xs font-medium text-[#1677ff] mb-0.5">Updates</p>
+          <p className="text-xs font-medium text-[#0068C9] mb-0.5">Updates</p>
           <h1 className="text-xl font-semibold text-gray-900">Notifications</h1>
         </div>
         {notifications && notifications.length > 0 && (

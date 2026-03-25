@@ -63,8 +63,8 @@ export default async function JobDetailPage({
       {/* Title card */}
       <Card>
         <div className="flex items-start gap-3">
-          <div className="w-12 h-12 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-            <CategoryIcon category={job.category} className="w-5 h-5 text-[#1677ff]" />
+          <div className="w-12 h-12 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+            <CategoryIcon category={job.category} className="w-5 h-5 text-[#FF9012]" />
           </div>
           <div className="flex-1 min-w-0">
             <h2 className="font-semibold text-gray-900 text-lg leading-tight">{job.title}</h2>

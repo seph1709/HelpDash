@@ -23,8 +23,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             'w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-gray-900 text-sm',
             'placeholder:text-gray-400',
-            'focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff]',
-            'hover:border-[#1677ff] transition-colors',
+            'focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012]',
+            'hover:border-[#FF9012] transition-colors',
             'disabled:opacity-50 disabled:bg-gray-50',
             'min-h-[40px]',
             error && 'border-[#ff4d4f] focus:ring-[#ff4d4f] focus:border-[#ff4d4f]',
@@ -62,8 +62,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={cn(
             'w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-gray-900 text-sm',
             'placeholder:text-gray-400 resize-none',
-            'focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff]',
-            'hover:border-[#1677ff] transition-colors',
+            'focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012]',
+            'hover:border-[#FF9012] transition-colors',
             'disabled:opacity-50 disabled:bg-gray-50',
             error && 'border-[#ff4d4f] focus:ring-[#ff4d4f] focus:border-[#ff4d4f]',
             className
@@ -98,8 +98,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           className={cn(
             'w-full px-3 py-2 rounded-lg border border-[#d9d9d9] bg-white text-gray-900 text-sm',
-            'focus:outline-none focus:ring-1 focus:ring-[#1677ff] focus:border-[#1677ff]',
-            'hover:border-[#1677ff] transition-colors',
+            'focus:outline-none focus:ring-1 focus:ring-[#FF9012] focus:border-[#FF9012]',
+            'hover:border-[#FF9012] transition-colors',
             'min-h-[40px]',
             error && 'border-[#ff4d4f]',
             className

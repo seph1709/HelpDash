@@ -62,7 +62,7 @@ export default async function JobFeedPage({
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="pt-2">
-        <p className="text-xs font-medium text-[#1677ff] mb-0.5">Job Feed</p>
+        <p className="text-xs font-medium text-[#0068C9] mb-0.5">Job Feed</p>
         <h1 className="text-xl font-semibold text-gray-900">Job Feed</h1>
         <p className="flex items-center gap-1.5 text-sm text-gray-400 mt-0.5">
           {isPremium
@@ -95,8 +95,8 @@ export default async function JobFeedPage({
                 href={`?radius=${km}${skillsFilter ? "&skills=on" : ""}`}
                 className={`px-2.5 py-1 rounded text-xs font-medium border transition-colors ${
                   radiusKm === km
-                    ? "bg-[#1677ff] text-white border-[#1677ff]"
-                    : "bg-white text-gray-600 border-[#d9d9d9] hover:border-[#1677ff] hover:text-[#1677ff]"
+                    ? "bg-[#FF9012] text-white border-[#FF9012]"
+                    : "bg-white text-gray-600 border-[#d9d9d9] hover:border-[#FF9012] hover:text-[#FF9012]"
                 }`}
               >
                 {km} km
@@ -109,8 +109,8 @@ export default async function JobFeedPage({
             href={skillsToggleHref}
             className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs font-medium border transition-colors ${
               skillsFilter
-                ? "bg-[#1677ff] text-white border-[#1677ff]"
-                : "bg-white text-gray-600 border-[#d9d9d9] hover:border-[#1677ff] hover:text-[#1677ff]"
+                ? "bg-[#FF9012] text-white border-[#FF9012]"
+                : "bg-white text-gray-600 border-[#d9d9d9] hover:border-[#FF9012] hover:text-[#FF9012]"
             }`}
           >
             <Filter className="w-3 h-3" />
@@ -127,7 +127,7 @@ export default async function JobFeedPage({
           </p>
           <p className="text-xs text-gray-500 mt-0.5">
             Set your location in your profile to filter by radius.{" "}
-            <Link href="/provider/profile" className="text-[#1677ff] font-medium">Set location</Link>
+            <Link href="/provider/profile" className="text-[#0068C9] font-medium">Set location</Link>
           </p>
         </div>
       )}
@@ -143,7 +143,7 @@ export default async function JobFeedPage({
               : `No open jobs within ${radiusKm} km. Try a wider radius or check back soon.`}
           </p>
           {skillsFilter && (
-            <Link href={`?radius=${radiusKm}`} className="mt-3 inline-block text-sm font-medium text-[#1677ff]">
+            <Link href={`?radius=${radiusKm}`} className="mt-3 inline-block text-sm font-medium text-[#0068C9]">
               Show all categories
             </Link>
           )}
@@ -160,8 +160,8 @@ export default async function JobFeedPage({
               <Link key={job.id} href={isLocked ? "/provider/subscription" : `/provider/job-feed/${job.id}`}>
                 <Card hover className={isLocked ? "opacity-60" : ""}>
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                      <CategoryIcon category={job.category} className="w-5 h-5 text-[#1677ff]" />
+                    <div className="w-10 h-10 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                      <CategoryIcon category={job.category} className="w-5 h-5 text-[#FF9012]" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2">

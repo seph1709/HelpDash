@@ -12,7 +12,7 @@ export function Badge({ children, variant = 'default', className }: BadgeProps) 
     success: 'bg-[#f6ffed] text-[#52c41a] border border-[#b7eb8f]',
     warning: 'bg-[#fffbe6] text-[#faad14] border border-[#ffe58f]',
     danger: 'bg-[#fff2f0] text-[#ff4d4f] border border-[#ffccc7]',
-    info: 'bg-[#e6f4ff] text-[#1677ff] border border-[#91caff]',
+    info: 'bg-[#e8f2fb] text-[#0068C9] border border-[#90c2e8]',
     premium: 'bg-gradient-to-r from-amber-400 to-orange-500 text-white',
   }
   return (

@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { createSupabaseServerClient } from '@/lib/supabase-server'
+import { createSupabaseServerClient, createSupabaseAdminClient } from '@/lib/supabase-server'
 import { AppShell } from '@/views/layouts/AppShell'
 import type { User } from '@/types'
 
@@ -9,13 +9,30 @@ export default async function ProviderLayout({ children }: { children: React.Rea
 
   if (!authUser) redirect('/login')
 
-  const { data: profile } = await supabase
+  let { data: profile, error: profileError } = await supabase
     .from('users')
     .select('*')
     .eq('id', authUser.id)
     .single()
 
+  // PGRST116 = row not found → auto-create the missing profile instead of signing out
+  if (!profile && profileError?.code === 'PGRST116') {
+    const admin = createSupabaseAdminClient()
+    const { data: created } = await admin
+      .from('users')
+      .insert({
+        id: authUser.id,
+        email: authUser.email!,
+        name: authUser.user_metadata?.name ?? authUser.email!.split('@')[0],
+        role: authUser.user_metadata?.role ?? 'client',
+      })
+      .select()
+      .single()
+    profile = created
+  }
+
   if (!profile) redirect('/login')
+
   if (profile.role === 'client') redirect('/dashboard')
 
   const { count } = await supabase

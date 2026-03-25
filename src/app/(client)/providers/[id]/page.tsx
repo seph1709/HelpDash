@@ -150,7 +150,7 @@ export default async function ProviderPublicProfilePage({
             {(provider.skills as JobCategory[]).map((skill) => (
               <span
                 key={skill}
-                className="flex items-center gap-1.5 text-xs bg-[#e6f4ff] text-[#1677ff] px-2.5 py-1 rounded border border-[#91caff] font-medium"
+                className="flex items-center gap-1.5 text-xs bg-[#fff3e0] text-[#FF9012] px-2.5 py-1 rounded border border-[#ffcc80] font-medium"
               >
                 <CategoryIcon category={skill} className="w-3 h-3" />
                 {JOB_CATEGORIES[skill]?.label}
@@ -179,8 +179,8 @@ export default async function ProviderPublicProfilePage({
             return (
               <Card key={booking.id}>
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#e6f4ff] flex items-center justify-center flex-shrink-0">
-                    <CategoryIcon category={booking.job?.category} className="w-4 h-4 text-[#1677ff]" />
+                  <div className="w-10 h-10 rounded-lg bg-[#fff3e0] flex items-center justify-center flex-shrink-0">
+                    <CategoryIcon category={booking.job?.category} className="w-4 h-4 text-[#FF9012]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-gray-900 text-sm leading-tight">
